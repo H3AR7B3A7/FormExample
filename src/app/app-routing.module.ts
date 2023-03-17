@@ -10,7 +10,9 @@ const routes: Routes = [
   {
     path: 'form',
     loadChildren: () =>
-      import('./patient-form/patient-form.module').then((m) => m.PatientFormModule),
+      import('./patient-form/patient-form.module').then(
+        (m) => m.PatientFormModule
+      ),
   },
 ]
 
