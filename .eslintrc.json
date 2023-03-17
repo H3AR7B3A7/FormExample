@@ -1,13 +1,9 @@
 {
   "root": true,
-  "ignorePatterns": [
-    "projects/**/*"
-  ],
+  "ignorePatterns": ["projects/**/*"],
   "overrides": [
     {
-      "files": [
-        "*.js"
-      ],
+      "files": ["*.js"],
       "parserOptions": {
         "ecmaVersion": "latest"
       },
@@ -16,13 +12,9 @@
       }
     },
     {
-      "files": [
-        "*.ts"
-      ],
+      "files": ["*.ts"],
       "parserOptions": {
-        "project": [
-          "tsconfig.json"
-        ],
+        "project": ["tsconfig.json"],
         "createDefaultProgram": true
       },
       "extends": [
@@ -33,10 +25,7 @@
         "plugin:@ngrx/strict-requiring-type-checking",
         "plugin:prettier/recommended"
       ],
-      "plugins": [
-        "unused-imports",
-        "deprecation"
-      ],
+      "plugins": ["unused-imports", "deprecation"],
       "rules": {
         "@angular-eslint/directive-selector": [
           "error",
@@ -55,15 +44,9 @@
           }
         ],
         "indent": "off",
-        "semi": [
-          "error",
-          "never"
-        ],
+        "semi": ["error", "never"],
         "deprecation/deprecation": "warn",
-        "quotes": [
-          "error",
-          "single"
-        ],
+        "quotes": ["error", "single"],
         "unused-imports/no-unused-imports": "error",
         "@typescript-eslint/no-explicit-any": "error",
         "@typescript-eslint/explicit-function-return-type": "error"
@@ -79,7 +62,12 @@
       "excludedFiles": ["*inline-template-*.component.html"],
       "extends": ["plugin:prettier/recommended"],
       "rules": {
-        "prettier/prettier": ["error", { "parser": "angular" }]
+        "prettier/prettier": [
+          "error",
+          {
+            "parser": "angular"
+          }
+        ]
       }
     }
   ]
