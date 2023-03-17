@@ -1,7 +1,7 @@
 import { appReducer } from '@app/core/state/app.reducer'
 import { AppState } from '@app/core/state/app.state'
-import { formReducer } from '@app/form/state/form.reducer'
-import { FormState } from '@app/form/state/form.state'
+import { formReducer } from '@app/patient-form/state/form.reducer'
+import { FormState } from '@app/patient-form/state/form.state'
 import { Action, combineReducers, compose } from '@ngrx/store'
 
 export interface State {
