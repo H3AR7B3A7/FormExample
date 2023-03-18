@@ -8,8 +8,10 @@ import { SharedModule } from '@app/shared/shared.module'
 import { EffectsModule } from '@ngrx/effects'
 import { StoreModule } from '@ngrx/store'
 
+import { PatientFormOverviewComponent } from './patient-form-overview/patient-form-overview.component'
+
 @NgModule({
-  declarations: [PatientFormComponent],
+  declarations: [PatientFormComponent, PatientFormOverviewComponent],
   imports: [
     SharedModule,
     PatientFormRoutingModule,
