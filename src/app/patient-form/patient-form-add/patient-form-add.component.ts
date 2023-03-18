@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core'
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
-import { Note, Patient, resolvePatient } from '@app/patient-form/patient'
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
+import { Patient, resolvePatient } from '@app/patient-form/patient'
 import { GENDERS } from '@app/patient-form/patient-form-add/gender'
 
 @Component({
