@@ -1,6 +1,7 @@
 @import 'src/assets/style/variables';
 
 form {
+  width: 20rem;
   display: flex;
   flex-direction: column;
   border: $border;

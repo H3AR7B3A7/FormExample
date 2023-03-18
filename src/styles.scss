@@ -18,27 +18,20 @@ body {
 button {
   border: $border;
   border-radius: $border-radius;
-  margin: $small-spacing;
-  padding: $small-spacing;
+  margin: $tiny-spacing;
+  padding: $tiny-spacing;
 }
 
-input {
+input, textarea, select {
   all: unset;
   border: $border;
   border-radius: $border-radius;
+  padding: $tiny-spacing;
 }
 
 textarea {
-  all: unset;
-  border: $border;
-  border-radius: $border-radius;
   resize: vertical;
-}
-
-select {
-  all: unset;
-  border: $border;
-  border-radius: $border-radius;
+  flex: 1;
 }
 
 label {
@@ -49,6 +42,9 @@ label {
 input.ng-invalid.ng-touched,
 input.ng-invalid.ng-dirty,
 textarea.ng-invalid.ng-touched,
-textarea.ng-invalid.ng-dirty {
+textarea.ng-invalid.ng-dirty,
+select.ng-invalid.ng-touched,
+select.ng-invalid.ng-dirty {
   background-color: lightpink;
+  border-color: darkred;
 }

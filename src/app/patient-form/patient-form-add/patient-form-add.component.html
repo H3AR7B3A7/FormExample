@@ -15,7 +15,7 @@
 
   <label for="gender">Gender:</label>
   <select formControlName="gender" id="gender">
-    <option value="" disabled selected>Select gender</option>
+    <option value="" disabled selected>Select...</option>
     <option *ngFor="let gender of genders" [value]="gender.value">
       {{ gender.translation }}
     </option>
@@ -53,4 +53,3 @@
 </form>
 
 <pre>{{ patientForm.value | json }}</pre>
-<pre>{{ patientForm.valid | json }}</pre>
