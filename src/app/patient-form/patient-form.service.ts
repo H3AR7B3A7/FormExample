@@ -6,12 +6,12 @@ import { Observable, catchError, retry, throwError } from 'rxjs'
 @Injectable({
   providedIn: 'root',
 })
-export class FormService {
+export class PatientFormService {
   private readonly patientBaseUrl = 'api/patients/'
 
   constructor(private http: HttpClient) {}
 
-  getHeroes(): Observable<Patient[]> {
+  getPatients(): Observable<Patient[]> {
     return this.http.get<Patient[]>(this.patientBaseUrl).pipe(
       retry(2),
       catchError((error: HttpErrorResponse) => {
@@ -19,5 +19,9 @@ export class FormService {
         return throwError(() => error)
       })
     )
+  }
+
+  createPatient(patient: Patient): Observable<Patient> {
+    return this.http.post<Patient>(this.patientBaseUrl, patient)
   }
 }
