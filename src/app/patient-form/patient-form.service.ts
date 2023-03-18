@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { Patient } from '@app/patient-form/patient'
-import { Observable, catchError, retry, throwError } from 'rxjs'
+import { Observable, catchError, map, retry, throwError } from 'rxjs'
 
 @Injectable({
   providedIn: 'root',
@@ -19,6 +19,12 @@ export class PatientFormService {
         return throwError(() => error)
       })
     )
+  }
+
+  getPatientIdAvailable(patientId: string): Observable<boolean> {
+    return this.http
+      .get<Patient[]>(this.patientBaseUrl + `?patientId=${patientId}`)
+      .pipe(map((p) => p.length === 0))
   }
 
   addPatient(patient: Patient): Observable<Patient> {

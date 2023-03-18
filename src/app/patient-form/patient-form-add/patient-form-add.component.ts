@@ -1,4 +1,11 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core'
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Patient, resolvePatient } from '@app/patient-form/patient'
 import { GENDERS } from '@app/patient-form/patient-form-add/gender'
@@ -12,6 +19,7 @@ import { Observable, skip } from 'rxjs'
 })
 export class PatientFormAddComponent implements OnInit {
   patientForm = this.fb.group({
+    patientId: ['', [Validators.required]],
     name: this.fb.group({
       first: ['', [Validators.required]],
       last: ['', [Validators.required]],
@@ -42,6 +50,10 @@ export class PatientFormAddComponent implements OnInit {
         this.patientForm.reset()
       }
     })
+  }
+
+  get patientId(): FormControl {
+    return this.patientForm.controls.patientId
   }
 
   get first(): FormControl {

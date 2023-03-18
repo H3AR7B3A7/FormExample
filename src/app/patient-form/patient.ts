@@ -1,7 +1,7 @@
 import { Gender } from '@app/patient-form/patient-form-add/gender'
 
 export interface Patient {
-  id?: number
+  patientId: string
   name: {
     first: string
     last: string
@@ -14,11 +14,13 @@ export interface Patient {
     city: string
   }
   notes: Note[]
+  id?: number
 }
 
 /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
 export function resolvePatient(obj: any): Patient {
   return {
+    patientId: obj.patientId || '',
     name: {
       first: obj.name.first || '',
       last: obj.name.last || '',

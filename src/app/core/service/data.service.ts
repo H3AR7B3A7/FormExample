@@ -19,6 +19,7 @@ export class DataService implements InMemoryDbService {
     return {
       patients: [
         {
+          patientId: '9a7ce785-20e8-4db9-843b-26c355cd8363',
           name: {
             first: 'Iron',
             last: 'Man',
@@ -34,6 +35,7 @@ export class DataService implements InMemoryDbService {
           id: 1,
         },
         {
+          patientId: '12d90afb-8250-4237-b9f9-441218c1339b',
           name: {
             first: 'Super',
             last: 'Woman',
@@ -49,6 +51,7 @@ export class DataService implements InMemoryDbService {
           id: 2,
         },
         {
+          patientId: '3e982d25-89e5-46aa-a07d-41680a066198',
           name: {
             first: 'Groot',
             last: 'Flora Colossus',

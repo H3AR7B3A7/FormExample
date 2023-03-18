@@ -1,4 +1,8 @@
 <form [formGroup]="patientForm" (ngSubmit)="onSubmit()">
+  <label for="patientId">Patient Id</label>
+  <input type="text" formControlName="patientId" id="patientId" />
+  <em *ngIf="check(patientId, 'required')">Required</em>
+
   <div formGroupName="name">
     <label for="first">First name</label>
     <input type="text" formControlName="first" id="first" />
