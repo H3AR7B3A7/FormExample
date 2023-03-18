@@ -45,6 +45,7 @@
       <textarea formControlName="text"></textarea>
       <button (click)="removeNote(i)" type="button">-</button>
     </div>
+    <em *ngIf="check(noteAt(i), 'required')">Required</em>
   </ng-container>
   <div class="addNote">
     <button (click)="addNote()" type="button">+</button>

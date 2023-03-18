@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core'
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
-import { Patient, resolvePatient } from '@app/patient-form/patient'
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
+import { Note, Patient, resolvePatient } from '@app/patient-form/patient'
 import { GENDERS } from '@app/patient-form/patient-form-add/gender'
 
 @Component({
@@ -59,6 +59,10 @@ export class PatientFormAddComponent {
     return this.patientForm.controls.address.controls.city
   }
 
+  noteAt(i: number): FormControl {
+    return this.patientForm.controls.notes.controls[i].controls.text
+  }
+
   check(formControl: FormControl, error: string): boolean {
     return (
       (formControl.dirty || formControl.touched) && formControl.hasError(error)
@@ -78,7 +82,7 @@ export class PatientFormAddComponent {
     this.patientForm.controls.notes.push(this.buildNote())
   }
 
-  private buildNote(): FormGroup {
+  private buildNote(): FormGroup<{ text: FormControl<string | null> }> {
     return this.fb.group({
       text: ['', [Validators.required]],
     })
