@@ -1,4 +1,6 @@
 <app-patient-form-add (patient)="addPatient($event)"></app-patient-form-add>
 <app-patient-form-overview
   [patients]="(patients$ | async)!"
+  [loading]="(loading$ | async)!"
+  [errorMessage]="(errorMessage$ | async)!"
 ></app-patient-form-overview>

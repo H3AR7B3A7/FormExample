@@ -9,4 +9,8 @@ import { Patient } from '@app/patient-form/patient'
 export class PatientFormOverviewComponent {
   @Input()
   patients!: Patient[]
+  @Input()
+  loading!: boolean
+  @Input()
+  errorMessage!: string
 }

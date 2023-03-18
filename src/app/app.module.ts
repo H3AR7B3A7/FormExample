@@ -18,7 +18,7 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api'
     StoreModule.forRoot(rootReducer, {}),
     EffectsModule.forRoot([RootEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
-    HttpClientInMemoryWebApiModule.forRoot(DataService, { delay: 10 }), // Artificial delay !!!
+    HttpClientInMemoryWebApiModule.forRoot(DataService, { delay: 4000 }), // Artificial delay !!!
   ],
   providers: [],
   bootstrap: [AppComponent],

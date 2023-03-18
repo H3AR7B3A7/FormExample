@@ -1,3 +1,15 @@
-<div *ngFor="let patient of patients">
-  <pre>{{ patient | json }}</pre>
+<div *ngIf="loading">loading...</div>
+
+<div
+  [hidden]="loading"
+  *ngIf="errorMessage"
+  class="wrapper mat-elevation-z8 error"
+>
+  <span>{{ errorMessage }}</span>
 </div>
+
+<ng-container *ngIf="!errorMessage">
+  <div [hidden]="loading" *ngFor="let patient of patients">
+    <pre>{{ patient | json }}</pre>
+  </div>
+</ng-container>

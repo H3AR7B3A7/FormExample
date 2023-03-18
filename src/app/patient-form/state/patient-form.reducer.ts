@@ -6,7 +6,7 @@ import { PatientFormState } from './patient-form.state'
 export const initialState: PatientFormState = {
   patients: [],
   errorMessage: '',
-  loading: false,
+  loading: true,
 }
 
 export const patientFormReducer = createReducer<PatientFormState>(
