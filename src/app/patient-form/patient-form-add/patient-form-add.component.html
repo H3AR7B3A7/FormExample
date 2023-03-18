@@ -9,6 +9,8 @@
     <em *ngIf="check(last, 'required')">Required</em>
   </div>
 
+  <hr />
+
   <label for="age">Age:</label>
   <input type="number" formControlName="age" id="age" />
   <em *ngIf="check(age, 'required')">Required</em>
@@ -21,6 +23,8 @@
     </option>
   </select>
   <em *ngIf="check(gender, 'required')">Required</em>
+
+  <hr />
 
   <div formGroupName="address">
     <label for="street">Street:</label>
@@ -35,6 +39,8 @@
     <input type="text" formControlName="city" id="city" />
     <em *ngIf="check(city, 'required')">Required</em>
   </div>
+
+  <hr />
 
   <label>Notes:</label>
   <ng-container

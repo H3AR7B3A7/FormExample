@@ -1,4 +1,5 @@
 @import 'src/assets/style/variables';
+@import 'src/assets/style/colors';
 
 form {
   width: 20rem;
@@ -8,14 +9,22 @@ form {
   margin: $medium-spacing;
   padding: $small-spacing;
   border-radius: $border-radius;
+  background-color: $secondary;
 
   & div {
     display: flex;
     flex-direction: column;
   }
 
-  & button[type='submit'] {
+  & hr {
+    border-top: .5px solid $grey;
+    margin-top: $medium-spacing;
+  }
 
+  & button[type='submit'] {
+    background-color: $primary;
+    border-color: $primary;
+    color: $white;
   }
 
   & .note {
@@ -40,7 +49,7 @@ form {
   }
 
   & em {
-    color: darkred;
+    color: $danger;
     text-align: right;
     font-size: 60%;
   }

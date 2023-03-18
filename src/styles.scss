@@ -1,4 +1,5 @@
 @import 'src/assets/style/variables';
+@import 'src/assets/style/colors';
 
 * {
   margin: 0;
@@ -27,6 +28,7 @@ input, textarea, select {
   border: $border;
   border-radius: $border-radius;
   padding: $tiny-spacing;
+  background-color: $white;
 }
 
 textarea {
@@ -45,6 +47,6 @@ textarea.ng-invalid.ng-touched,
 textarea.ng-invalid.ng-dirty,
 select.ng-invalid.ng-touched,
 select.ng-invalid.ng-dirty {
-  background-color: lightpink;
-  border-color: darkred;
+  background-color: $danger-light;
+  border-color: $danger;
 }
