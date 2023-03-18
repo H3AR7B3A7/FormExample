@@ -21,16 +21,20 @@ button {
   border-radius: $border-radius;
   margin: $tiny-spacing;
   padding: $tiny-spacing;
-}
 
-button[type='submit'] {
-  background-color: $primary;
-  border-color: $primary;
-  color: $white;
+  &:not([disabled]) {
+    cursor: pointer;
+  }
 
-  &:disabled {
-    background-color: $grey;
-    border-color: $grey;
+  &[type='submit'] {
+    background-color: $primary;
+    border-color: $primary;
+    color: $white;
+
+    &:disabled {
+      background-color: $grey;
+      border-color: $grey;
+    }
   }
 }
 
