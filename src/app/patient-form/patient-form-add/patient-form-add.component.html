@@ -20,7 +20,7 @@
   <select formControlName="gender" id="gender">
     <option value="" disabled selected>Select...</option>
     <option *ngFor="let gender of genders" [value]="gender.value">
-      {{ gender.translation }}
+      {{ gender.i18n }}
     </option>
   </select>
   <em *ngIf="check(gender, 'required')">Required</em>

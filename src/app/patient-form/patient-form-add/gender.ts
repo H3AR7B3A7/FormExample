@@ -1,15 +1,15 @@
 const genders = {
   male: {
     value: 'male',
-    translation: 'Male',
+    i18n: 'Male',
   },
   female: {
     value: 'female',
-    translation: 'Female',
+    i18n: 'Female',
   },
   other: {
     value: 'other',
-    translation: 'Other',
+    i18n: 'Other',
   },
 } as const
 

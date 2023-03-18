@@ -3,8 +3,12 @@ import { Patient } from '@app/patient-form/patient'
 import { FEMALE, MALE, OTHER } from '@app/patient-form/patient-form-add/gender'
 import { InMemoryDbService } from 'angular-in-memory-web-api'
 
+type ExtendedPatient = Patient & {
+  [key: string]: unknown
+}
+
 interface DataBase {
-  patients: Patient[]
+  patients: ExtendedPatient[]
 }
 
 @Injectable({
@@ -16,45 +20,45 @@ export class DataService implements InMemoryDbService {
       patients: [
         {
           name: {
-            first: 'Spider',
-            last: 'man',
+            first: 'Iron',
+            last: 'Man',
           },
-          age: 10,
+          age: 31,
           gender: MALE,
           address: {
-            street: 'Some street',
-            number: '12 2nd floor',
-            city: 'SomeCity',
+            street: 'Midtown Manhattan',
+            number: 'The Stark Tower Complex',
+            city: 'New York City',
           },
           notes: [],
           id: 1,
         },
         {
           name: {
-            first: 'Spider',
-            last: 'man',
+            first: 'Super',
+            last: 'Woman',
           },
-          age: 10,
+          age: 28,
           gender: FEMALE,
           address: {
-            street: 'Some street',
-            number: '12 2nd floor',
-            city: 'SomeCity',
+            street: 'Krypton',
+            number: 'forgot',
+            city: 'Antimatter Universe',
           },
           notes: [],
           id: 2,
         },
         {
           name: {
-            first: 'Spider',
-            last: 'man',
+            first: 'Groot',
+            last: 'Flora Colossus',
           },
-          age: 10,
+          age: 6,
           gender: OTHER,
           address: {
-            street: 'Some street',
-            number: '12 2nd floor',
-            city: 'SomeCity',
+            street: 'Planet X',
+            number: 'behind the mountain',
+            city: 'Galaxy',
           },
           notes: [],
           id: 3,
