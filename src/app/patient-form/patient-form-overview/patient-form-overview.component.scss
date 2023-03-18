@@ -19,3 +19,15 @@ pre {
   padding: $small-spacing;
   border-radius: $border-radius;
 }
+
+.skeleton {
+  content: '|';
+  animation: blink 1s infinite;
+  width: 225px;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}

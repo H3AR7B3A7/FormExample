@@ -14,4 +14,6 @@ export class PatientFormOverviewComponent {
   loading!: boolean
   @Input()
   errorMessage!: string
+  @Input()
+  patientAdded!: boolean
 }

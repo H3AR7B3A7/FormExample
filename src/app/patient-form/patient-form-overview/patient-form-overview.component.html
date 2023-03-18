@@ -12,4 +12,26 @@
   <div [hidden]="loading" *ngFor="let patient of patients">
     <pre>{{ patient | json }}</pre>
   </div>
+  <div *ngIf="!patientAdded">
+    <pre class="skeleton">{{
+      '{\n' +
+        '  "name": {\n' +
+        '    "first": "",\n' +
+        '    "last": ""\n' +
+        '  },\n' +
+        '  "age": 10,\n' +
+        '  "gender": {\n' +
+        '    "value": "",\n' +
+        '    "translation": ""\n' +
+        '  },\n' +
+        '  "address": {\n' +
+        '    "street": "",\n' +
+        '    "number": "",\n' +
+        '    "city": ""\n' +
+        '  },\n' +
+        '  "notes": [],\n' +
+        '  "id": undefined \n' +
+        '}'
+    }}</pre>
+  </div>
 </ng-container>
