@@ -28,8 +28,27 @@ export const patientFormReducer = createReducer<PatientFormState>(
       return {
         ...state,
         patients: [],
-        errorMessage: action.error,
+        errorMessage: action.errorMessage,
         loading: false,
+      }
+    }
+  ),
+  on(
+    PatientFormApiActions.addPatientSuccess,
+    (state, action): PatientFormState => {
+      return {
+        ...state,
+        patients: [...state.patients, action.patient],
+        errorMessage: '',
+      }
+    }
+  ),
+  on(
+    PatientFormApiActions.addPatientFail,
+    (state, action): PatientFormState => {
+      return {
+        ...state,
+        errorMessage: action.errorMessage,
       }
     }
   )

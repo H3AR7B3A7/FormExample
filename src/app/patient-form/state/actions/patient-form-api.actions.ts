@@ -2,6 +2,7 @@ import { Patient } from '@app/patient-form/patient'
 import { createAction, props } from '@ngrx/store'
 
 // LOAD OPERATIONS
+
 export const loadPatientsSuccess = createAction(
   '[Patient API] Load Success',
   props<{ patients: Patient[] }>()
@@ -9,5 +10,17 @@ export const loadPatientsSuccess = createAction(
 
 export const loadPatientsFail = createAction(
   '[Patient API] Load Fail',
-  props<{ error: string }>()
+  props<{ errorMessage: string }>()
+)
+
+// CREATE OPERATIONS
+
+export const addPatientSuccess = createAction(
+  '[PatientForm API] Add Patient Success',
+  props<{ patient: Patient }>()
+)
+
+export const addPatientFail = createAction(
+  '[PatientForm API] Add Patient Fail',
+  props<{ errorMessage: string }>()
 )

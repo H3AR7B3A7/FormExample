@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core'
 import { Patient } from '@app/patient-form/patient'
+import { FEMALE, MALE, OTHER } from '@app/patient-form/patient-form-add/gender'
 import { InMemoryDbService } from 'angular-in-memory-web-api'
 
 interface DataBase {
@@ -14,34 +15,49 @@ export class DataService implements InMemoryDbService {
     return {
       patients: [
         {
+          name: {
+            first: 'Spider',
+            last: 'man',
+          },
+          age: 10,
+          gender: MALE,
+          address: {
+            street: 'Some street',
+            number: '12 2nd floor',
+            city: 'SomeCity',
+          },
+          notes: [],
           id: 1,
-          name: 'Spiderman',
-          team: 'Avengers',
         },
         {
+          name: {
+            first: 'Spider',
+            last: 'man',
+          },
+          age: 10,
+          gender: FEMALE,
+          address: {
+            street: 'Some street',
+            number: '12 2nd floor',
+            city: 'SomeCity',
+          },
+          notes: [],
           id: 2,
-          name: 'Flash',
-          team: 'Justice League',
         },
         {
+          name: {
+            first: 'Spider',
+            last: 'man',
+          },
+          age: 10,
+          gender: OTHER,
+          address: {
+            street: 'Some street',
+            number: '12 2nd floor',
+            city: 'SomeCity',
+          },
+          notes: [],
           id: 3,
-          name: 'Ironman',
-          team: 'Avengers',
-        },
-        {
-          id: 4,
-          name: 'Superman',
-          team: 'Justice League',
-        },
-        {
-          id: 5,
-          name: 'Hulk',
-          team: 'Avengers',
-        },
-        {
-          id: 6,
-          name: 'Batman',
-          team: 'Justice League',
         },
       ],
     }

@@ -21,7 +21,7 @@ export class PatientFormService {
     )
   }
 
-  createPatient(patient: Patient): Observable<Patient> {
+  addPatient(patient: Patient): Observable<Patient> {
     return this.http.post<Patient>(this.patientBaseUrl, patient)
   }
 }

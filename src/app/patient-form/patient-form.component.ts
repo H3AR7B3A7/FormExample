@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core'
 import { Patient } from '@app/patient-form/patient'
-import { loadPatients } from '@app/patient-form/state/actions/patient-form-page.actions'
+import {
+  addPatient,
+  loadPatients,
+} from '@app/patient-form/state/actions/patient-form-page.actions'
 import {
   selectPatients,
   selectPatientsErrorMessage,
@@ -25,5 +28,9 @@ export class PatientFormComponent implements OnInit {
     this.errorMessage$ = this.store.select(selectPatientsErrorMessage)
     this.loading$ = this.store.select(selectPatientsLoading)
     this.store.dispatch(loadPatients())
+  }
+
+  addPatient($event: Patient): void {
+    this.store.dispatch(addPatient({ patient: $event }))
   }
 }

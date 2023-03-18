@@ -1,3 +1,5 @@
+@import 'src/assets/style/variables';
+
 * {
   margin: 0;
   padding: 0;
@@ -11,4 +13,42 @@ body {
 
 body {
   font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+button {
+  border: $border;
+  border-radius: $border-radius;
+  margin: $small-spacing;
+  padding: $small-spacing;
+}
+
+input {
+  all: unset;
+  border: $border;
+  border-radius: $border-radius;
+}
+
+textarea {
+  all: unset;
+  border: $border;
+  border-radius: $border-radius;
+  resize: vertical;
+}
+
+select {
+  all: unset;
+  border: $border;
+  border-radius: $border-radius;
+}
+
+label {
+  margin-top: $small-spacing;
+  font-style: italic;
+}
+
+input.ng-invalid.ng-touched,
+input.ng-invalid.ng-dirty,
+textarea.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-dirty {
+  background-color: lightpink;
 }

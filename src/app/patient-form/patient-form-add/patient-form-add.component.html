@@ -1,0 +1,56 @@
+<form [formGroup]="patientForm" (ngSubmit)="onSubmit()">
+  <div formGroupName="name">
+    <label for="first">First name:</label>
+    <input type="text" formControlName="first" id="first" />
+    <em *ngIf="check(first, 'required')">Required</em>
+
+    <label for="last">Last name:</label>
+    <input type="text" formControlName="last" id="last" />
+    <em *ngIf="check(last, 'required')">Required</em>
+  </div>
+
+  <label for="age">Age:</label>
+  <input type="number" formControlName="age" id="age" />
+  <em *ngIf="check(age, 'required')">Required</em>
+
+  <label for="gender">Gender:</label>
+  <select formControlName="gender" id="gender">
+    <option value="" disabled selected>Select gender</option>
+    <option *ngFor="let gender of genders" [value]="gender.value">
+      {{ gender.translation }}
+    </option>
+  </select>
+  <em *ngIf="check(gender, 'required')">Required</em>
+
+  <div formGroupName="address">
+    <label for="street">Street:</label>
+    <input type="text" formControlName="street" id="street" />
+    <em *ngIf="check(street, 'required')">Required</em>
+
+    <label for="number">Number:</label>
+    <input type="text" formControlName="number" id="number" />
+    <em *ngIf="check(number, 'required')">Required</em>
+
+    <label for="city">City:</label>
+    <input type="text" formControlName="city" id="city" />
+    <em *ngIf="check(city, 'required')">Required</em>
+  </div>
+
+  <label>Notes:</label>
+  <ng-container
+    formArrayName="notes"
+    *ngFor="let note of patientForm.controls.notes.controls; let i = index"
+  >
+    <div class="note" [formGroupName]="i">
+      <textarea formControlName="text"></textarea>
+      <button (click)="removeNote(i)" type="button">-</button>
+    </div>
+  </ng-container>
+  <div class="addNote">
+    <button (click)="addNote()" type="button">+</button>
+  </div>
+  <button [disabled]="patientForm.invalid" type="submit">Add</button>
+</form>
+
+<pre>{{ patientForm.value | json }}</pre>
+<pre>{{ patientForm.valid | json }}</pre>

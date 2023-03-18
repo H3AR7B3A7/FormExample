@@ -5,7 +5,7 @@ import {
   PatientFormPageActions,
 } from '@app/patient-form/state/actions'
 import { Actions, createEffect, ofType } from '@ngrx/effects'
-import { catchError, map, mergeMap, of } from 'rxjs'
+import { catchError, concatMap, map, mergeMap, of } from 'rxjs'
 
 @Injectable()
 export class PatientFormEffects {
@@ -17,8 +17,24 @@ export class PatientFormEffects {
           map((patients) =>
             PatientFormApiActions.loadPatientsSuccess({ patients })
           ),
-          catchError((error) =>
-            of(PatientFormApiActions.loadPatientsFail({ error }))
+          catchError((errorMessage) =>
+            of(PatientFormApiActions.loadPatientsFail({ errorMessage }))
+          )
+        )
+      )
+    )
+  })
+
+  addPatient$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(PatientFormPageActions.addPatient),
+      concatMap((action) =>
+        this.patientService.addPatient(action.patient).pipe(
+          map((patient) =>
+            PatientFormApiActions.addPatientSuccess({ patient })
+          ),
+          catchError((errorMessage) =>
+            of(PatientFormApiActions.addPatientFail({ errorMessage }))
           )
         )
       )

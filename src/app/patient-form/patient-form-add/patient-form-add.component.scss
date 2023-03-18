@@ -1,0 +1,46 @@
+@import 'src/assets/style/variables';
+
+form {
+  display: flex;
+  flex-direction: column;
+  border: $border;
+  margin: $medium-spacing;
+  padding: $small-spacing;
+  border-radius: $border-radius;
+
+  & div {
+    display: flex;
+    flex-direction: column;
+  }
+
+  & button[type='submit'] {
+
+  }
+
+  & .note {
+    flex-direction: row;
+    align-items: center;
+
+    & button {
+      width: $large-spacing;
+      height: $large-spacing;
+    }
+  }
+
+  .addNote {
+    width: 100%;
+    flex-direction: row;
+    justify-content: end;
+
+    & button {
+      width: $large-spacing;
+      height: $large-spacing;
+    }
+  }
+
+  & em {
+    color: darkred;
+    text-align: right;
+    font-size: 60%;
+  }
+}
