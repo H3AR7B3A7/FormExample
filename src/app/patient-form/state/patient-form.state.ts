@@ -4,4 +4,5 @@ export interface PatientFormState {
   patients: Patient[]
   errorMessage: string
   loading: boolean
+  patientAdded: boolean
 }

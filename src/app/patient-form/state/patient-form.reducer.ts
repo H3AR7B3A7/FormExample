@@ -1,4 +1,7 @@
-import { PatientFormApiActions } from '@app/patient-form/state/actions'
+import {
+  PatientFormApiActions,
+  PatientFormPageActions,
+} from '@app/patient-form/state/actions'
 import { createReducer, on } from '@ngrx/store'
 
 import { PatientFormState } from './patient-form.state'
@@ -7,6 +10,7 @@ export const initialState: PatientFormState = {
   patients: [],
   errorMessage: '',
   loading: true,
+  patientAdded: true,
 }
 
 export const patientFormReducer = createReducer<PatientFormState>(
@@ -33,6 +37,12 @@ export const patientFormReducer = createReducer<PatientFormState>(
       }
     }
   ),
+  on(PatientFormPageActions.addPatient, (state): PatientFormState => {
+    return {
+      ...state,
+      patientAdded: false,
+    }
+  }),
   on(
     PatientFormApiActions.addPatientSuccess,
     (state, action): PatientFormState => {
@@ -40,6 +50,7 @@ export const patientFormReducer = createReducer<PatientFormState>(
         ...state,
         patients: [...state.patients, action.patient],
         errorMessage: '',
+        patientAdded: true,
       }
     }
   ),

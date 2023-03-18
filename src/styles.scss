@@ -23,6 +23,17 @@ button {
   padding: $tiny-spacing;
 }
 
+button[type='submit'] {
+  background-color: $primary;
+  border-color: $primary;
+  color: $white;
+
+  &:disabled {
+    background-color: $grey;
+    border-color: $grey;
+  }
+}
+
 input, textarea, select {
   all: unset;
   border: $border;
@@ -39,6 +50,7 @@ textarea {
 label {
   margin-top: $small-spacing;
   font-style: italic;
+  font-size: 90%;
 }
 
 input.ng-invalid.ng-touched,

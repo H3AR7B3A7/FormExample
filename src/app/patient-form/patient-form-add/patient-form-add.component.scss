@@ -18,13 +18,6 @@ form {
 
   & hr {
     border-top: .5px solid $grey;
-    margin-top: $medium-spacing;
-  }
-
-  & button[type='submit'] {
-    background-color: $primary;
-    border-color: $primary;
-    color: $white;
   }
 
   & .note {
