@@ -14,9 +14,24 @@ const genders = {
 } as const
 
 export const GENDERS = Object.values(genders)
-export const MALE = GENDERS.find((g) => g.value === genders.male.value)!
-export const FEMALE = GENDERS.find((g) => g.value === genders.female.value)!
-export const OTHER = GENDERS.find((g) => g.value === genders.other.value)!
+const errorMessage = 'Could not find gender'
+
+export const MALE =
+  GENDERS.find((g) => g.value === genders.male.value) ||
+  ((): Gender => {
+    throw new Error(errorMessage)
+  })()
+export const FEMALE =
+  GENDERS.find((g) => g.value === genders.female.value) ||
+  ((): Gender => {
+    throw new Error(errorMessage)
+  })()
+
+export const OTHER =
+  GENDERS.find((g) => g.value === genders.other.value) ||
+  ((): Gender => {
+    throw new Error(errorMessage)
+  })()
 
 export type Gender = (typeof genders)[keyof typeof genders]
 
