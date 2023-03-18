@@ -17,9 +17,8 @@ export type Gender = (typeof genders)[keyof typeof genders]
 
 export const GENDERS = Object.values(genders)
 
-const errorMessage = 'Could not find gender'
 const notFound = (): Gender => {
-  throw new Error(errorMessage)
+  throw new Error('Could not find gender')
 }
 
 export const MALE =
