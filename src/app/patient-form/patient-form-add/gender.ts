@@ -5,7 +5,7 @@ const genders = {
   },
   female: {
     value: 'female',
-    translation: 'Male',
+    translation: 'Female',
   },
   other: {
     value: 'other',
@@ -13,27 +13,21 @@ const genders = {
   },
 } as const
 
+export type Gender = (typeof genders)[keyof typeof genders]
+
 export const GENDERS = Object.values(genders)
+
 const errorMessage = 'Could not find gender'
+const notFound = (): Gender => {
+  throw new Error(errorMessage)
+}
 
 export const MALE =
-  GENDERS.find((g) => g.value === genders.male.value) ||
-  ((): Gender => {
-    throw new Error(errorMessage)
-  })()
+  GENDERS.find((g) => g.value === genders.male.value) || notFound()
 export const FEMALE =
-  GENDERS.find((g) => g.value === genders.female.value) ||
-  ((): Gender => {
-    throw new Error(errorMessage)
-  })()
-
+  GENDERS.find((g) => g.value === genders.female.value) || notFound()
 export const OTHER =
-  GENDERS.find((g) => g.value === genders.other.value) ||
-  ((): Gender => {
-    throw new Error(errorMessage)
-  })()
-
-export type Gender = (typeof genders)[keyof typeof genders]
+  GENDERS.find((g) => g.value === genders.other.value) || notFound()
 
 export const resolveGender = <T extends Gender>(
   genders: T
