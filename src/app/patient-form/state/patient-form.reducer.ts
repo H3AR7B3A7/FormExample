@@ -10,11 +10,21 @@ export const initialState: PatientFormState = {
   patients: [],
   errorMessage: '',
   loading: true,
-  patientAdded: true,
+  savingPatient: undefined,
+  currentPatient: undefined,
 }
 
 export const patientFormReducer = createReducer<PatientFormState>(
   initialState,
+  on(
+    PatientFormPageActions.setCurrentPatient,
+    (state, action): PatientFormState => {
+      return {
+        ...state,
+        currentPatient: action.id,
+      }
+    }
+  ),
   on(
     PatientFormApiActions.loadPatientsSuccess,
     (state, action): PatientFormState => {
@@ -40,7 +50,7 @@ export const patientFormReducer = createReducer<PatientFormState>(
   on(PatientFormPageActions.addPatient, (state): PatientFormState => {
     return {
       ...state,
-      patientAdded: false,
+      savingPatient: true,
     }
   }),
   on(
@@ -50,7 +60,7 @@ export const patientFormReducer = createReducer<PatientFormState>(
         ...state,
         patients: [...state.patients, action.patient],
         errorMessage: '',
-        patientAdded: true,
+        savingPatient: false,
       }
     }
   ),

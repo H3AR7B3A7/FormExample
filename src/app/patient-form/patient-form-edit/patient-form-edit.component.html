@@ -1,3 +1,4 @@
+<h3>{{ formTitle }}</h3>
 <form [formGroup]="patientForm" (ngSubmit)="onSubmit()">
   <label for="patientId">Patient Id</label>
   <input type="text" formControlName="patientId" id="patientId" />
@@ -70,12 +71,23 @@
     <button (click)="addNote()" type="button">+</button>
   </div>
   <button
-    [disabled]="patientForm.invalid || fc.patientId.status === 'PENDING'"
+    [disabled]="
+      patientForm.invalid ||
+      fc.patientId.status === 'PENDING' ||
+      savingPatient ||
+      patientForm.pristine
+    "
     type="submit"
   >
-    Add
+    {{ buttonText }}
   </button>
-  <em *ngIf="patientAdded === false">Saving...</em>
+  <em *ngIf="savingPatient === true">Saving...</em>
 </form>
+
+<pre>{{ patientForm.invalid | json }}</pre>
+
+<pre>{{ fc.patientId.status === 'PENDING' | json }}</pre>
+
+<pre>{{ savingPatient | json }}</pre>
 
 <pre>{{ patientForm.value | json }}</pre>

@@ -4,6 +4,7 @@ import {
   addPatient,
   loadPatients,
   removePatient,
+  setCurrentPatient,
 } from '@app/patient-form/state/actions/patient-form-page.actions'
 import { selectPatientFormVM } from '@app/patient-form/state/patient-form.selector'
 import { Store } from '@ngrx/store'
@@ -17,9 +18,11 @@ import { Observable } from 'rxjs'
 export class PatientFormComponent implements OnInit {
   vm$!: Observable<{
     patients: Patient[]
+    currentPatientId: number | undefined
+    currentPatient: Patient | undefined
     errorMessage: string
     loading: boolean
-    patientAdded: boolean
+    savingPatient: boolean | undefined
   }>
   // patients$!: Observable<Patient[]>
   // errorMessage$!: Observable<string>
@@ -37,11 +40,15 @@ export class PatientFormComponent implements OnInit {
     this.store.dispatch(loadPatients())
   }
 
-  addPatient($event: Patient): void {
-    this.store.dispatch(addPatient({ patient: $event }))
+  patientSelected(id: number | undefined): void {
+    this.store.dispatch(setCurrentPatient({ id }))
   }
 
-  removePatient($event: number): void {
-    this.store.dispatch(removePatient({ id: $event }))
+  addPatient(patient: Patient): void {
+    this.store.dispatch(addPatient({ patient }))
+  }
+
+  removePatient(id: number): void {
+    this.store.dispatch(removePatient({ id }))
   }
 }

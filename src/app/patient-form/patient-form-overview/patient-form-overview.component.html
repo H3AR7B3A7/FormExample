@@ -10,9 +10,13 @@
 
 <ng-container *ngIf="!errorMessage">
   <div [hidden]="loading" *ngFor="let patient of patients">
-    <pre>{{ patient | json }}<button type="button" (click)="removePatient(patient.id!)">x</button></pre>
+    <pre
+      [ngClass]="patient.id === currentPatientId ? 'currentPatient' : ''"
+      (click)="
+        selectPatient(patient.id!)
+      ">{{ patient | json }}<button type="button" (click)="removePatient($event, patient.id!)">x</button></pre>
   </div>
-  <div *ngIf="!patientAdded">
+  <div *ngIf="savingPatient === true">
     <pre class="skeleton">{{
       '{\n' +
         '  "name": {\n' +

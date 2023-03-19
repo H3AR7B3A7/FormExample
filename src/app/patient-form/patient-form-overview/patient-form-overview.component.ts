@@ -17,16 +17,29 @@ export class PatientFormOverviewComponent {
   @Input()
   patients!: Patient[]
   @Input()
+  currentPatientId!: number | undefined
+  @Input()
   loading!: boolean
   @Input()
   errorMessage!: string
   @Input()
-  patientAdded!: boolean
+  savingPatient!: boolean | undefined
 
   @Output()
   patientRemoved = new EventEmitter<number>()
+  @Output()
+  patientSelected = new EventEmitter<number>()
 
-  removePatient(id: number): void {
+  selectPatient(id: number): void {
+    if (this.currentPatientId !== id) {
+      this.patientSelected.emit(id)
+    } else {
+      this.patientSelected.emit(undefined)
+    }
+  }
+
+  removePatient($event: MouseEvent, id: number): void {
+    $event.stopPropagation()
     this.patientRemoved.emit(id)
   }
 }

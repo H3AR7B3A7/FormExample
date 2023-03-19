@@ -4,5 +4,6 @@ export interface PatientFormState {
   patients: Patient[]
   errorMessage: string
   loading: boolean
-  patientAdded: boolean
+  savingPatient: boolean | undefined
+  currentPatient: number | undefined
 }

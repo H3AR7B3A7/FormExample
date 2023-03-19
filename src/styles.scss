@@ -24,6 +24,7 @@ button {
 
   &:not([disabled]) {
     cursor: pointer;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
   }
 
   &[type='submit'] {
@@ -36,6 +37,10 @@ button {
       border-color: $grey;
     }
   }
+
+  &:hover:not([disabled]) {
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  }
 }
 
 input, textarea, select {
@@ -44,6 +49,10 @@ input, textarea, select {
   border-radius: $border-radius;
   padding: $tiny-spacing;
   background-color: $white;
+
+  &:disabled {
+    background-color: $grey;
+  }
 }
 
 textarea {

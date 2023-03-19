@@ -1,5 +1,3 @@
-import { Gender } from '@app/patient-form/models/gender'
-
 export interface Patient {
   patientId: string
   name: {
@@ -7,7 +5,7 @@ export interface Patient {
     last: string
   }
   age: number
-  gender: Gender
+  gender: string
   address: {
     street: string
     number: string
@@ -39,3 +37,23 @@ export function resolvePatient(obj: any): Patient {
 export interface Note {
   text: string
 }
+
+export const NEW_PATIENT = resolvePatient({
+  patientId: '',
+  name: {
+    first: '',
+    last: '',
+  },
+  age: 'EMPTY',
+  gender: '',
+  address: {
+    street: '',
+    number: '',
+    city: '',
+  },
+  notes: [
+    {
+      text: '',
+    },
+  ],
+})

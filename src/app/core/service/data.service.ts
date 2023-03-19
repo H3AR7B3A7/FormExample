@@ -25,7 +25,7 @@ export class DataService implements InMemoryDbService {
             last: 'Man',
           },
           age: 31,
-          gender: MALE,
+          gender: MALE.value,
           address: {
             street: 'Midtown Manhattan',
             number: 'The Stark Tower Complex',
@@ -41,7 +41,7 @@ export class DataService implements InMemoryDbService {
             last: 'Woman',
           },
           age: 28,
-          gender: FEMALE,
+          gender: FEMALE.value,
           address: {
             street: 'Krypton',
             number: 'forgot',
@@ -57,7 +57,7 @@ export class DataService implements InMemoryDbService {
             last: 'Flora Colossus',
           },
           age: 6,
-          gender: OTHER,
+          gender: OTHER.value,
           address: {
             street: 'Planet X',
             number: 'behind the mountain',

@@ -8,15 +8,15 @@ import { SharedModule } from '@app/shared/shared.module'
 import { EffectsModule } from '@ngrx/effects'
 import { StoreModule } from '@ngrx/store'
 
-import { PatientFormAddComponent } from './patient-form-add/patient-form-add.component'
-import { StatusPipe } from './patient-form-add/utils/status.pipe'
+import { PatientFormEditComponent } from './patient-form-edit/patient-form-edit.component'
+import { StatusPipe } from './patient-form-edit/utils/status.pipe'
 import { PatientFormOverviewComponent } from './patient-form-overview/patient-form-overview.component'
 
 @NgModule({
   declarations: [
     PatientFormComponent,
     PatientFormOverviewComponent,
-    PatientFormAddComponent,
+    PatientFormEditComponent,
     StatusPipe,
   ],
   imports: [

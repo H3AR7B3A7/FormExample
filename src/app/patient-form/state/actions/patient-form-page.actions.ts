@@ -12,3 +12,8 @@ export const removePatient = createAction(
   '[PatientsForm Page] Remove Patient',
   props<{ id: number }>()
 )
+
+export const setCurrentPatient = createAction(
+  '[PatientForm Page] Set Current Patient',
+  props<{ id: number | undefined }>()
+)

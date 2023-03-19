@@ -1,4 +1,5 @@
 @import 'src/assets/style/variables';
+@import 'src/assets/style/colors';
 
 :host {
   display: flex;
@@ -19,11 +20,16 @@ pre {
   margin: $medium-spacing;
   padding: $small-spacing;
   border-radius: $border-radius;
+  cursor: pointer;
 
   & button {
     float: right;
     width: $large-spacing;
     height: $large-spacing;
+  }
+
+  &.currentPatient {
+    background-color: $secondary;
   }
 }
 
