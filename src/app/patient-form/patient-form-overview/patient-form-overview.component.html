@@ -1,10 +1,6 @@
-<div *ngIf="loading">loading...</div>
+<div class="message" *ngIf="loading"><span>loading...</span></div>
 
-<div
-  [hidden]="loading"
-  *ngIf="errorMessage"
-  class="wrapper mat-elevation-z8 error"
->
+<div [hidden]="loading" *ngIf="errorMessage" class="message">
   <span>{{ errorMessage }}</span>
 </div>
 
@@ -13,32 +9,28 @@
     <pre
       [ngClass]="{
         currentPatient: patient.id === currentPatientId,
-        skeleton: patient.id === removingPatient
+        blinking: patient.id === removingPatient
       }"
       (click)="selectPatient(patient.id!)">{{ patient | json }}
-      <button type="button" (click)="removePatient($event, patient.id!)">x</button></pre>
+      <button [disabled]="removingPatient > 0" type="button" (click)="removePatient($event, patient.id!)">x</button></pre>
   </div>
   <div *ngIf="savingPatient === true">
-    <pre class="skeleton">{{
-        '{\n' +
-        '  "id": "", \n' +
-        '  "name": {\n' +
-        '    "first": "",\n' +
-        '    "last": ""\n' +
-        '  },\n' +
-        '  "age": "",\n' +
-        '  "gender": {\n' +
-        '    "value": "",\n' +
-        '    "translation": ""\n' +
-        '  },\n' +
-        '  "address": {\n' +
-        '    "street": "",\n' +
-        '    "number": "",\n' +
-        '    "city": ""\n' +
-        '  },\n' +
-        '  "notes": []\n' +
-        '}'
-      }}
+    <pre class="blinking">
+      <span class="skeleton-box" style="width:10%;"></span>
+      <span class="skeleton-box" style="width:20%;"></span>
+      <span class="skeleton-box" style="width:50%;"></span>
+      <span class="skeleton-box" style="width:25%;"></span>
+      <span class="skeleton-box" style="width:40%;"></span>
+      <span class="skeleton-box" style="width:48%;"></span>
+      <span class="skeleton-box" style="width:12%;"></span>
+      <span class="skeleton-box" style="width:80%;"></span>
+      <span class="skeleton-box" style="width:40%;"></span>
+      <span class="skeleton-box" style="width:70%;"></span>
+      <span class="skeleton-box" style="width:50%;"></span>
+      <span class="skeleton-box" style="width:30%;"></span>
+      <span class="skeleton-box" style="width:18%;"></span>
+      <span class="skeleton-box" style="width:80%;"></span>
+      <span class="skeleton-box" style="width:10%;"></span>
       <button disabled type="button">x</button></pre>
   </div>
 </ng-container>

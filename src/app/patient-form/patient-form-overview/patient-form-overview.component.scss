@@ -3,6 +3,7 @@
 
 :host {
   display: flex;
+  flex: 1;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
@@ -14,13 +15,28 @@
   }
 }
 
+.message {
+  width: 100%;
+  height: 100vh !important;
+  position: relative;
+  justify-content: center;
+  & span {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
 pre {
-  min-width: 404px;
+  min-width: 452px;
   border: $border;
   margin: $medium-spacing;
-  padding: $small-spacing;
+  padding: $large-spacing;
   border-radius: $border-radius;
-  cursor: pointer;
+  box-shadow: $small-shadow;
+  &:not(.blinking){
+    cursor: pointer;
+  }
 
   & button {
     float: right;
@@ -31,15 +47,49 @@ pre {
   &.currentPatient {
     background-color: $secondary;
   }
+
+  &:hover {
+    box-shadow: $large-shadow;
+  }
 }
 
-.skeleton {
-  content: '|';
-  animation: blink 1s infinite;
+.blinking {
+  animation: blink 3s infinite;
 }
 
 @keyframes blink {
   50% {
     opacity: 0;
+  }
+}
+
+pre > .skeleton-box {
+  margin-left: -30px;
+}
+
+.skeleton-box {
+  display: inline-block;
+  height: 1em;
+  position: relative;
+  overflow: hidden;
+  background-color: #DDDBDD;
+
+  &::after {
+    position: absolute;
+    background-image: linear-gradient(
+                    90deg,
+                    rgba(#fff, 0) 0,
+                    rgba(#fff, 0.2) 20%,
+                    rgba(#fff, 0.5) 60%,
+                    rgba(#fff, 0)
+    );
+    animation: shimmer 3s infinite;
+    content: '';
+  }
+
+  @keyframes shimmer {
+    100% {
+      transform: translateX(100%);
+    }
   }
 }

@@ -24,7 +24,7 @@ button {
 
   &:not([disabled]) {
     cursor: pointer;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: $large-shadow;
   }
 
   &[type='submit'] {
@@ -39,7 +39,7 @@ button {
   }
 
   &:hover:not([disabled]) {
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: $small-shadow;
   }
 }
 
