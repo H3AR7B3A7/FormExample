@@ -103,8 +103,7 @@ export class PatientFormAddComponent implements OnInit {
   }
 
   onSubmit(): void {
-    const value = this.patientForm.value
-    this.patient.emit(resolvePatient(value))
+    this.patient.emit(resolvePatient(this.patientForm.value))
   }
 
   removeNote(i: number): void {
