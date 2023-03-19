@@ -1,7 +1,7 @@
 <div class="message" *ngIf="loading"><span>loading...</span></div>
 
 <div [hidden]="loading" *ngIf="errorMessage" class="message">
-  <span>{{ errorMessage }}</span>
+  <span class="error">{{ errorMessage }}</span>
 </div>
 
 <ng-container *ngIf="!errorMessage">

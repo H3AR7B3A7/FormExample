@@ -14,10 +14,7 @@ export class PatientService {
   getPatients(): Observable<Patient[]> {
     return this.http.get<Patient[]>(this.patientBaseUrl).pipe(
       retry(2),
-      catchError((error: HttpErrorResponse) => {
-        console.error(error)
-        return throwError(() => error)
-      })
+      catchError((err) => this.handleError(err))
     )
   }
 
@@ -52,13 +49,10 @@ export class PatientService {
   }
 
   private handleError(err: HttpErrorResponse): Observable<never> {
-    let errorMessage: string
-    if (err.error instanceof ErrorEvent) {
-      errorMessage = `An error occurred: ${err.error.message}`
-    } else {
-      errorMessage = `Backend returned code ${err.status}: ${err.error}`
-    }
-    console.error(err)
-    return throwError(() => errorMessage)
+    return throwError(() =>
+      err.error instanceof ErrorEvent
+        ? `An error occurred: ${err.error.message}`
+        : `Backend returned code ${err.status}: ${err.error}`
+    )
   }
 }
