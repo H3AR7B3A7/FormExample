@@ -9,6 +9,7 @@ import { EffectsModule } from '@ngrx/effects'
 import { StoreModule } from '@ngrx/store'
 
 import { PatientFormAddComponent } from './patient-form-add/patient-form-add.component'
+import { StatusPipe } from './patient-form-add/utils/status.pipe'
 import { PatientFormOverviewComponent } from './patient-form-overview/patient-form-overview.component'
 
 @NgModule({
@@ -16,6 +17,7 @@ import { PatientFormOverviewComponent } from './patient-form-overview/patient-fo
     PatientFormComponent,
     PatientFormOverviewComponent,
     PatientFormAddComponent,
+    StatusPipe,
   ],
   imports: [
     SharedModule,

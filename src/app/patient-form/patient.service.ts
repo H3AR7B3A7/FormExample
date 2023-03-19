@@ -6,7 +6,7 @@ import { Observable, catchError, map, retry, throwError } from 'rxjs'
 @Injectable({
   providedIn: 'root',
 })
-export class PatientFormService {
+export class PatientService {
   private readonly patientBaseUrl = 'api/patients/'
 
   constructor(private http: HttpClient) {}
@@ -23,7 +23,7 @@ export class PatientFormService {
 
   getPatientIdAvailable(patientId: string): Observable<boolean> {
     return this.http
-      .get<Patient[]>(this.patientBaseUrl + `?patientId=${patientId}`)
+      .get<Patient[]>(this.patientBaseUrl + `?patientId=^${patientId}/?$`)
       .pipe(map((p) => p.length === 0))
   }
 

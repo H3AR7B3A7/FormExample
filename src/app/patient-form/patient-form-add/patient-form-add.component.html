@@ -2,6 +2,10 @@
   <label for="patientId">Patient Id</label>
   <input type="text" formControlName="patientId" id="patientId" />
   <em *ngIf="check(patientId, 'required')">Required</em>
+  <em *ngIf="check(patientId, 'exists')">Already Exists</em>
+  <ng-container *ngIf="patientId.statusChanges | async as status">
+    <em *ngIf="patientId.value !== ''">{{ status | status }}</em>
+  </ng-container>
 
   <div formGroupName="name">
     <label for="first">First name</label>
@@ -17,8 +21,9 @@
   <hr />
 
   <label for="age">Age</label>
-  <input type="number" formControlName="age" id="age" />
+  <input type="number" min="0" formControlName="age" id="age" />
   <em *ngIf="check(age, 'required')">Required</em>
+  <em *ngIf="check(age, 'min')">Must be conceived to be a patient</em>
 
   <label for="gender">Gender</label>
   <select formControlName="gender" id="gender">
@@ -64,7 +69,12 @@
   <div class="addNote">
     <button (click)="addNote()" type="button">+</button>
   </div>
-  <button [disabled]="patientForm.invalid" type="submit">Add</button>
+  <button
+    [disabled]="patientForm.invalid || patientId.status === 'PENDING'"
+    type="submit"
+  >
+    Add
+  </button>
   <em *ngIf="(patientAdded$ | async)! === false">Saving...</em>
 </form>
 

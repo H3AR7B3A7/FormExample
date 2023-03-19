@@ -9,6 +9,7 @@ import {
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Patient, resolvePatient } from '@app/patient-form/patient'
 import { GENDERS } from '@app/patient-form/patient-form-add/gender'
+import { PatientIdValidator } from '@app/patient-form/patient-form-add/utils/patient-id-validator'
 import { Observable, skip } from 'rxjs'
 
 @Component({
@@ -19,12 +20,16 @@ import { Observable, skip } from 'rxjs'
 })
 export class PatientFormAddComponent implements OnInit {
   patientForm = this.fb.group({
-    patientId: ['', [Validators.required]],
+    patientId: [
+      '',
+      Validators.required,
+      this.patientIdValidator.validate.bind(this.patientIdValidator),
+    ],
     name: this.fb.group({
       first: ['', [Validators.required]],
       last: ['', [Validators.required]],
     }),
-    age: [null, [Validators.required]],
+    age: [null, [Validators.required, Validators.min(0)]],
     gender: ['', [Validators.required]],
     address: this.fb.group({
       street: ['', [Validators.required]],
@@ -42,7 +47,10 @@ export class PatientFormAddComponent implements OnInit {
   @Output()
   private readonly patient = new EventEmitter<Patient>()
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private patientIdValidator: PatientIdValidator
+  ) {}
 
   ngOnInit(): void {
     this.patientAdded$.pipe(skip(1)).subscribe((added) => {

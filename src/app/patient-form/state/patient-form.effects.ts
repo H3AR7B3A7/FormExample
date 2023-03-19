@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core'
-import { PatientFormService } from '@app/patient-form/patient-form.service'
+import { PatientService } from '@app/patient-form/patient.service'
 import {
   PatientFormApiActions,
   PatientFormPageActions,
@@ -43,6 +43,6 @@ export class PatientFormEffects {
 
   constructor(
     private actions$: Actions,
-    private patientService: PatientFormService
+    private patientService: PatientService
   ) {}
 }
