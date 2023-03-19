@@ -47,10 +47,11 @@ export class PatientFormEditComponent {
   formTitle = 'Add Patient'
   buttonText = 'Add'
   readonly genders = GENDERS
-  private _savingPatient: boolean | undefined
+  private _savingPatient!: boolean
+  private _currentPatient!: Patient
 
   @Input()
-  set savingPatient(saving: boolean | undefined) {
+  set savingPatient(saving: boolean) {
     if (!saving) {
       this.patientForm.reset(NEW_PATIENT)
       this.patientForm.controls.notes.clear()
@@ -58,13 +59,18 @@ export class PatientFormEditComponent {
     this._savingPatient = saving
   }
 
-  get savingPatient(): boolean | undefined {
+  get savingPatient(): boolean {
     return this._savingPatient
   }
 
   @Input()
-  set currentPatient(patient: Patient | undefined) {
+  set currentPatient(patient: Patient) {
     this.displayPatient(patient)
+    this._currentPatient = patient
+  }
+
+  get currentPatient(): Patient {
+    return this._currentPatient
   }
 
   @Output()
@@ -100,28 +106,33 @@ export class PatientFormEditComponent {
   }
 
   onSubmit(): void {
-    this.patient.emit(resolvePatient(this.patientForm.value))
+    let newPatient
+    if (this.currentPatient.id === 0) {
+      newPatient = resolvePatient(this.patientForm.value)
+    } else {
+      newPatient = resolvePatient({
+        ...this.currentPatient,
+        ...this.patientForm.value,
+      })
+    }
+
+    this.patient.emit(newPatient)
   }
 
-  private displayPatient(patient: Patient | undefined): void {
-    if (patient && patient?.patientId !== '') {
+  private displayPatient(patient: Patient): void {
+    this.patientForm.controls.notes.clear()
+    if (patient.id === 0) {
       this.patientForm.reset(NEW_PATIENT)
-      this.patientForm.controls.notes.clear()
-
-      if (patient.id === 0) {
-        this.formTitle = 'Add Patient'
-        this.buttonText = 'Add'
-        this.fc.patientId.enable()
-      } else {
-        this.formTitle = `Edit Patient: ${patient.name.first} ${patient.name.last}`
-        this.buttonText = 'Edit'
-        this.fc.patientId.disable()
-      }
-
+      this.formTitle = 'Add Patient'
+      this.buttonText = 'Add'
+      this.fc.patientId.enable()
+    } else {
       patient.notes.forEach(() => {
         this.addNote()
       })
-
+      this.formTitle = `Edit Patient: ${patient.name.first} ${patient.name.last}`
+      this.buttonText = 'Edit'
+      this.fc.patientId.disable()
       this.patientForm.patchValue({
         patientId: patient.patientId,
         name: {

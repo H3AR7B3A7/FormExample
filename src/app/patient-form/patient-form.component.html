@@ -1,6 +1,8 @@
 <app-patient-form-edit
   [currentPatient]="(vm$ | async)!.currentPatient"
-  [savingPatient]="(vm$ | async)!.savingPatient"
+  [savingPatient]="
+    (vm$ | async)!.savingPatient || (vm$ | async)!.updatingPatient
+  "
   (patient)="addPatient($event)"
 ></app-patient-form-edit>
 <app-patient-form-overview
@@ -9,6 +11,8 @@
   [loading]="(vm$ | async)!.loading"
   [errorMessage]="(vm$ | async)!.errorMessage"
   [savingPatient]="(vm$ | async)!.savingPatient"
+  [updatingPatient]="(vm$ | async)!.updatingPatient"
+  [removingPatient]="(vm$ | async)!.removingPatient"
   (patientSelected)="patientSelected($event)"
   (patientRemoved)="removePatient($event)"
 ></app-patient-form-overview>

@@ -8,10 +8,12 @@ import { PatientFormState } from './patient-form.state'
 
 export const initialState: PatientFormState = {
   patients: [],
+  currentPatientId: 0,
   errorMessage: '',
   loading: true,
-  savingPatient: undefined,
-  currentPatient: undefined,
+  savingPatient: false,
+  updatingPatient: false,
+  removingPatient: 0,
 }
 
 export const patientFormReducer = createReducer<PatientFormState>(
@@ -21,7 +23,7 @@ export const patientFormReducer = createReducer<PatientFormState>(
     (state, action): PatientFormState => {
       return {
         ...state,
-        currentPatient: action.id,
+        currentPatientId: action.id,
       }
     }
   ),
@@ -70,6 +72,48 @@ export const patientFormReducer = createReducer<PatientFormState>(
       return {
         ...state,
         errorMessage: action.errorMessage,
+        savingPatient: false,
+      }
+    }
+  ),
+  on(PatientFormPageActions.updatePatient, (state): PatientFormState => {
+    return {
+      ...state,
+      updatingPatient: true,
+    }
+  }),
+  on(
+    PatientFormApiActions.updatePatientSuccess,
+    (state, action): PatientFormState => {
+      const updatedPatients = state.patients.map((p) =>
+        action.patient.id === p.id ? action.patient : p
+      )
+      return {
+        ...state,
+        patients: updatedPatients,
+        currentPatientId: 0,
+        errorMessage: '',
+        updatingPatient: false,
+      }
+    }
+  ),
+  on(
+    PatientFormApiActions.updatePatientFail,
+    (state, action): PatientFormState => {
+      return {
+        ...state,
+        currentPatientId: 0,
+        errorMessage: action.errorMessage,
+        updatingPatient: false,
+      }
+    }
+  ),
+  on(
+    PatientFormPageActions.removePatient,
+    (state, action): PatientFormState => {
+      return {
+        ...state,
+        removingPatient: action.id,
       }
     }
   ),
@@ -80,6 +124,7 @@ export const patientFormReducer = createReducer<PatientFormState>(
         ...state,
         patients: state.patients.filter((p) => action.id !== p.id),
         errorMessage: '',
+        removingPatient: 0,
       }
     }
   ),
@@ -89,6 +134,7 @@ export const patientFormReducer = createReducer<PatientFormState>(
       return {
         ...state,
         errorMessage: action.errorMessage,
+        removingPatient: 0,
       }
     }
   )

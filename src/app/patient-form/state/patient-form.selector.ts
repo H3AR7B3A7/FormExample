@@ -1,4 +1,4 @@
-import { NEW_PATIENT } from '@app/patient-form/models/patient'
+import { NEW_PATIENT, Patient } from '@app/patient-form/models/patient'
 import { PatientFormState } from '@app/patient-form/state/patient-form.state'
 import { createFeatureSelector, createSelector } from '@ngrx/store'
 
@@ -9,60 +9,48 @@ export const selectPatients = createSelector(
   (state) => state.patients
 )
 
-export const selectPatientsErrorMessage = createSelector(
-  selectPatientFormFeatureState,
-  (state) => state.errorMessage
-)
-
-export const selectPatientsLoading = createSelector(
-  selectPatientFormFeatureState,
-  (state) => state.loading
-)
-
-export const selectPatientAdded = createSelector(
-  selectPatientFormFeatureState,
-  (state) => state.savingPatient
-)
-
-export const selectCurrentPatientId = createSelector(
-  selectPatientFormFeatureState,
-  (state) => state.currentPatient
-)
+// export const selectPatientsErrorMessage = createSelector(
+//   selectPatientFormFeatureState,
+//   (state) => state.errorMessage
+// )
+//
+// export const selectPatientsLoading = createSelector(
+//   selectPatientFormFeatureState,
+//   (state) => state.loading
+// )
+//
+// export const selectSavingPatient = createSelector(
+//   selectPatientFormFeatureState,
+//   (state) => state.savingPatient
+// )
+//
+// export const selectUpdatingPatient = createSelector(
+//   selectPatientFormFeatureState,
+//   (state) => state.updatingPatient
+// )
+//
+// export const selectCurrentPatientId = createSelector(
+//   selectPatientFormFeatureState,
+//   (state) => state.currentPatient
+// )
 
 export const selectCurrentPatient = createSelector(
   selectPatientFormFeatureState,
-  selectCurrentPatientId,
-  (state, currentPatientId) => {
-    if (!currentPatientId) {
+  (state) => {
+    if (state.currentPatientId === 0) {
       return NEW_PATIENT
     } else {
-      return currentPatientId
-        ? state.patients.find((p) => p.id === currentPatientId)
-        : undefined
+      return state.currentPatientId
+        ? (state.patients
+            .map((p) => p)
+            .find((p) => p.id === state.currentPatientId) as Patient)
+        : NEW_PATIENT
     }
   }
 )
 
 export const selectPatientFormVM = createSelector(
-  selectPatients,
-  selectCurrentPatientId,
+  selectPatientFormFeatureState,
   selectCurrentPatient,
-  selectPatientsErrorMessage,
-  selectPatientsLoading,
-  selectPatientAdded,
-  (
-    patients,
-    currentPatientId,
-    currentPatient,
-    errorMessage,
-    loading,
-    savingPatient
-  ) => ({
-    patients,
-    currentPatientId,
-    currentPatient,
-    errorMessage,
-    loading,
-    savingPatient,
-  })
+  (state, currentPatient) => ({ ...state, currentPatient })
 )

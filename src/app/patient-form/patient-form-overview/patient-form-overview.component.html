@@ -11,19 +11,22 @@
 <ng-container *ngIf="!errorMessage">
   <div [hidden]="loading" *ngFor="let patient of patients">
     <pre
-      [ngClass]="patient.id === currentPatientId ? 'currentPatient' : ''"
-      (click)="
-        selectPatient(patient.id!)
-      ">{{ patient | json }}<button type="button" (click)="removePatient($event, patient.id!)">x</button></pre>
+      [ngClass]="{
+        currentPatient: patient.id === currentPatientId,
+        skeleton: patient.id === removingPatient
+      }"
+      (click)="selectPatient(patient.id!)">{{ patient | json }}
+      <button type="button" (click)="removePatient($event, patient.id!)">x</button></pre>
   </div>
   <div *ngIf="savingPatient === true">
     <pre class="skeleton">{{
-      '{\n' +
+        '{\n' +
+        '  "id": "", \n' +
         '  "name": {\n' +
         '    "first": "",\n' +
         '    "last": ""\n' +
         '  },\n' +
-        '  "age": 10,\n' +
+        '  "age": "",\n' +
         '  "gender": {\n' +
         '    "value": "",\n' +
         '    "translation": ""\n' +
@@ -33,9 +36,9 @@
         '    "number": "",\n' +
         '    "city": ""\n' +
         '  },\n' +
-        '  "notes": [],\n' +
-        '  "id": undefined \n' +
+        '  "notes": []\n' +
         '}'
-    }}<button disabled type="button">x</button></pre>
+      }}
+      <button disabled type="button">x</button></pre>
   </div>
 </ng-container>

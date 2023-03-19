@@ -5,6 +5,7 @@ import {
   loadPatients,
   removePatient,
   setCurrentPatient,
+  updatePatient,
 } from '@app/patient-form/state/actions/patient-form-page.actions'
 import { selectPatientFormVM } from '@app/patient-form/state/patient-form.selector'
 import { Store } from '@ngrx/store'
@@ -18,16 +19,19 @@ import { Observable } from 'rxjs'
 export class PatientFormComponent implements OnInit {
   vm$!: Observable<{
     patients: Patient[]
-    currentPatientId: number | undefined
-    currentPatient: Patient | undefined
+    currentPatientId: number
+    currentPatient: Patient
     errorMessage: string
     loading: boolean
-    savingPatient: boolean | undefined
+    savingPatient: boolean
+    updatingPatient: boolean
+    removingPatient: number
   }>
   // patients$!: Observable<Patient[]>
   // errorMessage$!: Observable<string>
   // loading$!: Observable<boolean>
   // patientAdded$!: Observable<boolean>
+  // ...
 
   constructor(private store: Store) {}
 
@@ -37,15 +41,20 @@ export class PatientFormComponent implements OnInit {
     // this.errorMessage$ = this.store.select(selectPatientsErrorMessage)
     // this.loading$ = this.store.select(selectPatientsLoading)
     // this.patientAdded$ = this.store.select(selectPatientAdded)
+    // ...
     this.store.dispatch(loadPatients())
   }
 
-  patientSelected(id: number | undefined): void {
+  patientSelected(id: number): void {
     this.store.dispatch(setCurrentPatient({ id }))
   }
 
   addPatient(patient: Patient): void {
-    this.store.dispatch(addPatient({ patient }))
+    if (!patient.id) {
+      this.store.dispatch(addPatient({ patient }))
+    } else {
+      this.store.dispatch(updatePatient({ patient }))
+    }
   }
 
   removePatient(id: number): void {

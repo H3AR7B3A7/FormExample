@@ -19,6 +19,7 @@ export class DataService implements InMemoryDbService {
     return {
       patients: [
         {
+          id: 1,
           patientId: '9a7ce785-20e8-4db9-843b-26c355cd8363',
           name: {
             first: 'Iron',
@@ -32,9 +33,9 @@ export class DataService implements InMemoryDbService {
             city: 'New York City',
           },
           notes: [],
-          id: 1,
         },
         {
+          id: 2,
           patientId: '12d90afb-8250-4237-b9f9-441218c1339b',
           name: {
             first: 'Super',
@@ -48,9 +49,9 @@ export class DataService implements InMemoryDbService {
             city: 'Antimatter Universe',
           },
           notes: [],
-          id: 2,
         },
         {
+          id: 3,
           patientId: '3e982d25-89e5-46aa-a07d-41680a066198',
           name: {
             first: 'Groot',
@@ -64,7 +65,6 @@ export class DataService implements InMemoryDbService {
             city: 'Galaxy',
           },
           notes: [],
-          id: 3,
         },
       ],
     }

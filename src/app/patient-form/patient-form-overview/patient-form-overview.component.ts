@@ -17,13 +17,17 @@ export class PatientFormOverviewComponent {
   @Input()
   patients!: Patient[]
   @Input()
-  currentPatientId!: number | undefined
+  currentPatientId!: number
   @Input()
   loading!: boolean
   @Input()
   errorMessage!: string
   @Input()
-  savingPatient!: boolean | undefined
+  savingPatient!: boolean
+  @Input()
+  updatingPatient!: boolean
+  @Input()
+  removingPatient!: number
 
   @Output()
   patientRemoved = new EventEmitter<number>()
@@ -34,7 +38,7 @@ export class PatientFormOverviewComponent {
     if (this.currentPatientId !== id) {
       this.patientSelected.emit(id)
     } else {
-      this.patientSelected.emit(undefined)
+      this.patientSelected.emit(0)
     }
   }
 

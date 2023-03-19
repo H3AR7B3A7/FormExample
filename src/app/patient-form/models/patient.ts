@@ -1,4 +1,5 @@
 export interface Patient {
+  id: number
   patientId: string
   name: {
     first: string
@@ -12,25 +13,25 @@ export interface Patient {
     city: string
   }
   notes: Note[]
-  id?: number
 }
 
 /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
-export function resolvePatient(obj: any): Patient {
+export function resolvePatient(patient: any): Patient {
   return {
-    patientId: obj.patientId || '',
+    id: patient.id,
+    patientId: patient.patientId,
     name: {
-      first: obj.name.first || '',
-      last: obj.name.last || '',
+      first: patient.name.first,
+      last: patient.name.last,
     },
-    age: obj.age || 0,
-    gender: obj.gender || '',
+    age: patient.age,
+    gender: patient.gender,
     address: {
-      street: obj.address.street || '',
-      number: obj.address.number || '',
-      city: obj.address.city || '',
+      street: patient.address.street,
+      number: patient.address.number,
+      city: patient.address.city,
     },
-    notes: obj.notes || [],
+    notes: patient.notes,
   } as const
 }
 
@@ -39,12 +40,13 @@ export interface Note {
 }
 
 export const NEW_PATIENT = resolvePatient({
+  id: 0,
   patientId: '',
   name: {
     first: '',
     last: '',
   },
-  age: 'EMPTY',
+  age: null,
   gender: '',
   address: {
     street: '',

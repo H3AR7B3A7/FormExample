@@ -25,6 +25,18 @@ export const addPatientFail = createAction(
   props<{ errorMessage: string }>()
 )
 
+// UPDATE OPERATIONS
+
+export const updatePatientSuccess = createAction(
+  '[PatientForm API] Update Patient Success',
+  props<{ patient: Patient }>()
+)
+
+export const updatePatientFail = createAction(
+  '[PatientForm API] Update Patient Fail',
+  props<{ errorMessage: string }>()
+)
+
 // DELETE OPERATIONS
 
 export const removePatientSuccess = createAction(
