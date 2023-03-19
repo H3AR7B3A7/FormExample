@@ -7,3 +7,8 @@ export const addPatient = createAction(
   '[PatientsForm Page] Add Patient',
   props<{ patient: Patient }>()
 )
+
+export const removePatient = createAction(
+  '[PatientsForm Page] Remove Patient',
+  props<{ id: number }>()
+)

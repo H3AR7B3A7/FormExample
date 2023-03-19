@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core'
 import { Patient } from '@app/patient-form/patient'
 
 @Component({
@@ -16,4 +22,11 @@ export class PatientFormOverviewComponent {
   errorMessage!: string
   @Input()
   patientAdded!: boolean
+
+  @Output()
+  patientRemoved = new EventEmitter<number>()
+
+  removePatient(id: number): void {
+    this.patientRemoved.emit(id)
+  }
 }

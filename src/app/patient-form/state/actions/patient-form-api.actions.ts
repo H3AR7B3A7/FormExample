@@ -24,3 +24,15 @@ export const addPatientFail = createAction(
   '[PatientForm API] Add Patient Fail',
   props<{ errorMessage: string }>()
 )
+
+// DELETE OPERATIONS
+
+export const removePatientSuccess = createAction(
+  '[PatientForm API] Remove Patient Success',
+  props<{ id: number }>()
+)
+
+export const removePatientFail = createAction(
+  '[PatientForm API] Remove Patient Fail',
+  props<{ errorMessage: string }>()
+)

@@ -41,6 +41,22 @@ export class PatientFormEffects {
     )
   })
 
+  deletePatient$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(PatientFormPageActions.removePatient),
+      concatMap((action) =>
+        this.patientService.removePatient(action.id).pipe(
+          map(() =>
+            PatientFormApiActions.removePatientSuccess({ id: action.id })
+          ),
+          catchError((errorMessage) =>
+            of(PatientFormApiActions.removePatientFail({ errorMessage }))
+          )
+        )
+      )
+    )
+  })
+
   constructor(
     private actions$: Actions,
     private patientService: PatientService

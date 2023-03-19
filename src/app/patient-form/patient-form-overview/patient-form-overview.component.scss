@@ -19,6 +19,12 @@ pre {
   margin: $medium-spacing;
   padding: $small-spacing;
   border-radius: $border-radius;
+
+  & button {
+    float: right;
+    width: $large-spacing;
+    height: $large-spacing;
+  }
 }
 
 .skeleton {

@@ -3,6 +3,7 @@ import { Patient } from '@app/patient-form/patient'
 import {
   addPatient,
   loadPatients,
+  removePatient,
 } from '@app/patient-form/state/actions/patient-form-page.actions'
 import { selectPatientFormVM } from '@app/patient-form/state/patient-form.selector'
 import { Store } from '@ngrx/store'
@@ -38,5 +39,9 @@ export class PatientFormComponent implements OnInit {
 
   addPatient($event: Patient): void {
     this.store.dispatch(addPatient({ patient: $event }))
+  }
+
+  removePatient($event: number): void {
+    this.store.dispatch(removePatient({ id: $event }))
   }
 }

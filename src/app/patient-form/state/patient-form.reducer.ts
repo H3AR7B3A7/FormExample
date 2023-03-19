@@ -62,5 +62,24 @@ export const patientFormReducer = createReducer<PatientFormState>(
         errorMessage: action.errorMessage,
       }
     }
+  ),
+  on(
+    PatientFormApiActions.removePatientSuccess,
+    (state, action): PatientFormState => {
+      return {
+        ...state,
+        patients: state.patients.filter((p) => action.id !== p.id),
+        errorMessage: '',
+      }
+    }
+  ),
+  on(
+    PatientFormApiActions.removePatientFail,
+    (state, action): PatientFormState => {
+      return {
+        ...state,
+        errorMessage: action.errorMessage,
+      }
+    }
   )
 )

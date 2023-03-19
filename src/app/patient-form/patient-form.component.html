@@ -7,4 +7,5 @@
   [loading]="(vm$ | async)!.loading"
   [errorMessage]="(vm$ | async)!.errorMessage"
   [patientAdded]="(vm$ | async)!.patientAdded"
+  (patientRemoved)="removePatient($event)"
 ></app-patient-form-overview>
