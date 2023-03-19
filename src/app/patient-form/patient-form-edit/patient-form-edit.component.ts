@@ -106,17 +106,14 @@ export class PatientFormEditComponent {
   }
 
   onSubmit(): void {
-    let newPatient
-    if (this.currentPatient.id === 0) {
-      newPatient = resolvePatient(this.patientForm.value)
-    } else {
-      newPatient = resolvePatient({
-        ...this.currentPatient,
-        ...this.patientForm.value,
-      })
-    }
-
-    this.patient.emit(newPatient)
+    this.patient.emit(
+      this.currentPatient.id === 0
+        ? resolvePatient(this.patientForm.value)
+        : resolvePatient({
+            ...this.currentPatient,
+            ...this.patientForm.value,
+          })
+    )
   }
 
   private displayPatient(patient: Patient): void {
@@ -133,21 +130,7 @@ export class PatientFormEditComponent {
       this.formTitle = `Edit Patient: ${patient.name.first} ${patient.name.last}`
       this.buttonText = 'Edit'
       this.fc.patientId.disable()
-      this.patientForm.patchValue({
-        patientId: patient.patientId,
-        name: {
-          first: patient.name.first,
-          last: patient.name.last,
-        },
-        age: patient.age,
-        gender: patient.gender,
-        address: {
-          street: patient.address.street,
-          number: patient.address.number,
-          city: patient.address.city,
-        },
-        notes: patient.notes.length > 0 ? patient.notes : [],
-      })
+      this.patientForm.patchValue(patient)
     }
   }
 }
