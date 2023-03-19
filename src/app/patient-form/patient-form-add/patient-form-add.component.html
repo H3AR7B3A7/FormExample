@@ -1,20 +1,20 @@
 <form [formGroup]="patientForm" (ngSubmit)="onSubmit()">
   <label for="patientId">Patient Id</label>
   <input type="text" formControlName="patientId" id="patientId" />
-  <em *ngIf="check(patientId, 'required')">Required</em>
-  <em *ngIf="check(patientId, 'exists')">Already Exists</em>
-  <ng-container *ngIf="patientId.statusChanges | async as status">
-    <em *ngIf="patientId.value !== ''">{{ status | status }}</em>
+  <em *ngIf="validate(fc.patientId, 'required')">Required</em>
+  <em *ngIf="validate(fc.patientId, 'exists')">Already Exists</em>
+  <ng-container *ngIf="fc.patientId.statusChanges | async as status">
+    <em *ngIf="fc.patientId.value !== ''">{{ status | status }}</em>
   </ng-container>
 
   <div formGroupName="name">
     <label for="first">First name</label>
     <input type="text" formControlName="first" id="first" />
-    <em *ngIf="check(first, 'required')">Required</em>
+    <em *ngIf="validate(fc.name.first, 'required')">Required</em>
 
     <label for="last">Last name</label>
     <input type="text" formControlName="last" id="last" />
-    <em *ngIf="check(last, 'required')">Required</em>
+    <em *ngIf="validate(fc.name.last, 'required')">Required</em>
   </div>
 
   <br />
@@ -22,8 +22,8 @@
 
   <label for="age">Age</label>
   <input type="number" min="0" formControlName="age" id="age" />
-  <em *ngIf="check(age, 'required')">Required</em>
-  <em *ngIf="check(age, 'min')">Must be conceived to be a patient</em>
+  <em *ngIf="validate(fc.age, 'required')">Required</em>
+  <em *ngIf="validate(fc.age, 'min')">Must be conceived to be a patient</em>
 
   <label for="gender">Gender</label>
   <select formControlName="gender" id="gender">
@@ -32,7 +32,7 @@
       {{ gender.i18n }}
     </option>
   </select>
-  <em *ngIf="check(gender, 'required')">Required</em>
+  <em *ngIf="validate(fc.gender, 'required')">Required</em>
 
   <br />
   <label for="street">Adress</label>
@@ -41,15 +41,15 @@
   <div formGroupName="address">
     <label for="street">Street</label>
     <input type="text" formControlName="street" id="street" />
-    <em *ngIf="check(street, 'required')">Required</em>
+    <em *ngIf="validate(fc.address.street, 'required')">Required</em>
 
     <label for="number">Number</label>
     <input type="text" formControlName="number" id="number" />
-    <em *ngIf="check(number, 'required')">Required</em>
+    <em *ngIf="validate(fc.address.number, 'required')">Required</em>
 
     <label for="city">City</label>
     <input type="text" formControlName="city" id="city" />
-    <em *ngIf="check(city, 'required')">Required</em>
+    <em *ngIf="validate(fc.address.city, 'required')">Required</em>
   </div>
 
   <br />
@@ -64,13 +64,13 @@
       <textarea formControlName="text"></textarea>
       <button (click)="removeNote(i)" type="button">-</button>
     </div>
-    <em *ngIf="check(noteAt(i), 'required')">Required</em>
+    <em *ngIf="validate(noteAt(i), 'required')">Required</em>
   </ng-container>
   <div class="addNote">
     <button (click)="addNote()" type="button">+</button>
   </div>
   <button
-    [disabled]="patientForm.invalid || patientId.status === 'PENDING'"
+    [disabled]="patientForm.invalid || fc.patientId.status === 'PENDING'"
     type="submit"
   >
     Add

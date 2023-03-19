@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { Patient } from '@app/patient-form/patient'
+import { Patient } from '@app/patient-form/models/patient'
 import { Observable, catchError, map, retry, throwError } from 'rxjs'
 
 @Injectable({

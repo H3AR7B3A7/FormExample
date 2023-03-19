@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
-import { Patient } from '@app/patient-form/patient'
-import { FEMALE, MALE, OTHER } from '@app/patient-form/patient-form-add/gender'
+import { FEMALE, MALE, OTHER } from '@app/patient-form/models/gender'
+import { Patient } from '@app/patient-form/models/patient'
 import { InMemoryDbService } from 'angular-in-memory-web-api'
 
 type ExtendedPatient = Patient & {

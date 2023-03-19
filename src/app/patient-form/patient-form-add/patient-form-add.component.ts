@@ -6,9 +6,10 @@ import {
   Output,
 } from '@angular/core'
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
-import { Patient, resolvePatient } from '@app/patient-form/patient'
-import { GENDERS } from '@app/patient-form/patient-form-add/gender'
+import { GENDERS } from '@app/patient-form/models/gender'
+import { Patient, resolvePatient } from '@app/patient-form/models/patient'
 import { PatientIdValidator } from '@app/patient-form/patient-form-add/utils/patient-id-validator'
+import { Utils } from '@app/patient-form/patient-form-add/utils/utils'
 
 @Component({
   selector: 'app-patient-form-add',
@@ -37,8 +38,10 @@ export class PatientFormAddComponent {
     notes: this.fb.array([this.buildNote()]),
   })
 
+  readonly fc = Utils.getControls(this.patientForm)
+
   readonly genders = GENDERS
-  private _patientAdded!: boolean
+  private _patientAdded = false
 
   @Input()
   set patientAdded(added: boolean) {
@@ -60,63 +63,31 @@ export class PatientFormAddComponent {
     private patientIdValidator: PatientIdValidator
   ) {}
 
-  get patientId(): FormControl {
-    return this.patientForm.controls.patientId
-  }
-
-  get first(): FormControl {
-    return this.patientForm.controls.name.controls.first
-  }
-
-  get last(): FormControl {
-    return this.patientForm.controls.name.controls.last
-  }
-
-  get age(): FormControl {
-    return this.patientForm.controls.age
-  }
-
-  get gender(): FormControl {
-    return this.patientForm.controls.gender
-  }
-
-  get street(): FormControl {
-    return this.patientForm.controls.address.controls.street
-  }
-
-  get number(): FormControl {
-    return this.patientForm.controls.address.controls.number
-  }
-
-  get city(): FormControl {
-    return this.patientForm.controls.address.controls.city
-  }
-
   noteAt(i: number): FormControl {
     return this.patientForm.controls.notes.controls[i].controls.text
   }
 
-  check(formControl: FormControl, error: string): boolean {
+  validate(formControl: FormControl, error: string): boolean {
     return (
       (formControl.dirty || formControl.touched) && formControl.hasError(error)
     )
-  }
-
-  onSubmit(): void {
-    this.patient.emit(resolvePatient(this.patientForm.value))
-  }
-
-  removeNote(i: number): void {
-    this.patientForm.controls.notes.removeAt(i)
   }
 
   addNote(): void {
     this.patientForm.controls.notes.push(this.buildNote())
   }
 
+  removeNote(i: number): void {
+    this.patientForm.controls.notes.removeAt(i)
+  }
+
   private buildNote(): FormGroup<{ text: FormControl<string | null> }> {
     return this.fb.group({
       text: ['', [Validators.required]],
     })
+  }
+
+  onSubmit(): void {
+    this.patient.emit(resolvePatient(this.patientForm.value))
   }
 }

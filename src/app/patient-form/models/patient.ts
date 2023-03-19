@@ -1,4 +1,4 @@
-import { Gender } from '@app/patient-form/patient-form-add/gender'
+import { Gender } from '@app/patient-form/models/gender'
 
 export interface Patient {
   patientId: string
