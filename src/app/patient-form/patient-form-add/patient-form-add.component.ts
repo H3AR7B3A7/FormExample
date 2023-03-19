@@ -3,14 +3,12 @@ import {
   Component,
   EventEmitter,
   Input,
-  OnInit,
   Output,
 } from '@angular/core'
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Patient, resolvePatient } from '@app/patient-form/patient'
 import { GENDERS } from '@app/patient-form/patient-form-add/gender'
 import { PatientIdValidator } from '@app/patient-form/patient-form-add/utils/patient-id-validator'
-import { Observable, skip } from 'rxjs'
 
 @Component({
   selector: 'app-patient-form-add',
@@ -18,8 +16,8 @@ import { Observable, skip } from 'rxjs'
   styleUrls: ['./patient-form-add.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PatientFormAddComponent implements OnInit {
-  patientForm = this.fb.group({
+export class PatientFormAddComponent {
+  readonly patientForm = this.fb.group({
     patientId: [
       '',
       Validators.required,
@@ -40,9 +38,19 @@ export class PatientFormAddComponent implements OnInit {
   })
 
   readonly genders = GENDERS
+  private _patientAdded!: boolean
 
   @Input()
-  patientAdded$!: Observable<boolean>
+  set patientAdded(added: boolean) {
+    if (added) {
+      this.patientForm.reset()
+    }
+    this._patientAdded = added
+  }
+
+  get patientAdded(): boolean {
+    return this._patientAdded
+  }
 
   @Output()
   private readonly patient = new EventEmitter<Patient>()
@@ -51,14 +59,6 @@ export class PatientFormAddComponent implements OnInit {
     private fb: FormBuilder,
     private patientIdValidator: PatientIdValidator
   ) {}
-
-  ngOnInit(): void {
-    this.patientAdded$.pipe(skip(1)).subscribe((added) => {
-      if (added) {
-        this.patientForm.reset()
-      }
-    })
-  }
 
   get patientId(): FormControl {
     return this.patientForm.controls.patientId

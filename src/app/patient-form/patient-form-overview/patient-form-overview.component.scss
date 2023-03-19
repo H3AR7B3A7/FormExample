@@ -14,6 +14,7 @@
 }
 
 pre {
+  min-width: 404px;
   border: $border;
   margin: $medium-spacing;
   padding: $small-spacing;
@@ -23,7 +24,6 @@ pre {
 .skeleton {
   content: '|';
   animation: blink 1s infinite;
-  width: 404px;
 }
 
 @keyframes blink {

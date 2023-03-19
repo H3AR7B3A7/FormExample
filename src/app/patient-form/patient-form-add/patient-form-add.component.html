@@ -75,7 +75,7 @@
   >
     Add
   </button>
-  <em *ngIf="(patientAdded$ | async)! === false">Saving...</em>
+  <em *ngIf="patientAdded === false">Saving...</em>
 </form>
 
 <pre>{{ patientForm.value | json }}</pre>

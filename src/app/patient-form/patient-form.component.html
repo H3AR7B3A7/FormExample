@@ -1,10 +1,10 @@
 <app-patient-form-add
-  [patientAdded$]="patientAdded$"
+  [patientAdded]="(vm$ | async)!.patientAdded"
   (patient)="addPatient($event)"
 ></app-patient-form-add>
 <app-patient-form-overview
   [patients]="(vm$ | async)!.patients"
   [loading]="(vm$ | async)!.loading"
   [errorMessage]="(vm$ | async)!.errorMessage"
-  [patientAdded]="(patientAdded$ | async)!"
+  [patientAdded]="(vm$ | async)!.patientAdded"
 ></app-patient-form-overview>

@@ -4,10 +4,7 @@ import {
   addPatient,
   loadPatients,
 } from '@app/patient-form/state/actions/patient-form-page.actions'
-import {
-  selectOverviewVM,
-  selectPatientAdded,
-} from '@app/patient-form/state/patient-form.selector'
+import { selectPatientFormVM } from '@app/patient-form/state/patient-form.selector'
 import { Store } from '@ngrx/store'
 import { Observable } from 'rxjs'
 
@@ -21,22 +18,22 @@ export class PatientFormComponent implements OnInit {
     patients: Patient[]
     errorMessage: string
     loading: boolean
+    patientAdded: boolean
   }>
   // patients$!: Observable<Patient[]>
   // errorMessage$!: Observable<string>
   // loading$!: Observable<boolean>
-  patientAdded$!: Observable<boolean>
+  // patientAdded$!: Observable<boolean>
 
   constructor(private store: Store) {}
 
   ngOnInit(): void {
-    this.vm$ = this.store.select(selectOverviewVM)
+    this.vm$ = this.store.select(selectPatientFormVM)
     // this.patients$ = this.store.select(selectPatients)
     // this.errorMessage$ = this.store.select(selectPatientsErrorMessage)
     // this.loading$ = this.store.select(selectPatientsLoading)
+    // this.patientAdded$ = this.store.select(selectPatientAdded)
     this.store.dispatch(loadPatients())
-
-    this.patientAdded$ = this.store.select(selectPatientAdded)
   }
 
   addPatient($event: Patient): void {
