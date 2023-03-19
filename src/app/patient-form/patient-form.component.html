@@ -3,8 +3,8 @@
   (patient)="addPatient($event)"
 ></app-patient-form-add>
 <app-patient-form-overview
-  [patients]="(patients$ | async)!"
-  [loading]="(loading$ | async)!"
-  [errorMessage]="(errorMessage$ | async)!"
+  [patients]="(vm$ | async)!.patients"
+  [loading]="(vm$ | async)!.loading"
+  [errorMessage]="(vm$ | async)!.errorMessage"
   [patientAdded]="(patientAdded$ | async)!"
 ></app-patient-form-overview>

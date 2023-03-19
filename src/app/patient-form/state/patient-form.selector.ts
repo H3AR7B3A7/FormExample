@@ -22,3 +22,14 @@ export const selectPatientAdded = createSelector(
   selectPatientFormFeatureState,
   (state) => state.patientAdded
 )
+
+export const selectOverviewVM = createSelector(
+  selectPatients,
+  selectPatientsErrorMessage,
+  selectPatientsLoading,
+  (patients, errorMessage, loading) => ({
+    patients,
+    errorMessage,
+    loading,
+  })
+)
