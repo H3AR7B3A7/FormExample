@@ -1,4 +1,4 @@
-import { NEW_PATIENT, Patient } from '@app/patient-form/models/patient'
+import { NEW_PATIENT, Patient } from '@app/patient-form/model/patient'
 import { PatientFormState } from '@app/patient-form/state/patient-form.state'
 import { createFeatureSelector, createSelector } from '@ngrx/store'
 

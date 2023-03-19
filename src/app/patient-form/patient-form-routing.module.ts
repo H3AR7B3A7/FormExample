@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
-import { PatientFormComponent } from '@app/patient-form/patient-form.component'
+import { PatientFormShellComponent } from '@app/patient-form/patient-form-shell/patient-form-shell.component'
 
 const routes: Routes = [
   {
     path: '',
-    component: PatientFormComponent,
+    component: PatientFormShellComponent,
   },
 ]
 

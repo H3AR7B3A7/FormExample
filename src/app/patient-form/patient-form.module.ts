@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core'
 import { ReactiveFormsModule } from '@angular/forms'
 import { PatientFormRoutingModule } from '@app/patient-form/patient-form-routing.module'
-import { PatientFormComponent } from '@app/patient-form/patient-form.component'
+import { PatientFormShellComponent } from '@app/patient-form/patient-form-shell/patient-form-shell.component'
 import { PatientFormEffects } from '@app/patient-form/state/patient-form.effects'
 import { patientFormReducer } from '@app/patient-form/state/patient-form.reducer'
 import { SharedModule } from '@app/shared/shared.module'
@@ -14,7 +14,7 @@ import { PatientFormOverviewComponent } from './patient-form-overview/patient-fo
 
 @NgModule({
   declarations: [
-    PatientFormComponent,
+    PatientFormShellComponent,
     PatientFormOverviewComponent,
     PatientFormEditComponent,
     StatusPipe,

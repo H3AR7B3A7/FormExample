@@ -1,4 +1,4 @@
-import { Patient } from '@app/patient-form/models/patient'
+import { Patient } from '@app/patient-form/model/patient'
 
 export interface PatientFormState {
   patients: Patient[]

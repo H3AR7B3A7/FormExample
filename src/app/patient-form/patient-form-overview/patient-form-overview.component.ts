@@ -5,7 +5,7 @@ import {
   Input,
   Output,
 } from '@angular/core'
-import { Patient } from '@app/patient-form/models/patient'
+import { Patient } from '@app/patient-form/model/patient'
 
 @Component({
   selector: 'app-patient-form-overview',

@@ -1,4 +1,4 @@
-import { Patient } from '@app/patient-form/models/patient'
+import { Patient } from '@app/patient-form/model/patient'
 import { createAction, props } from '@ngrx/store'
 
 export const loadPatients = createAction('[PatientsForm Page] Load')

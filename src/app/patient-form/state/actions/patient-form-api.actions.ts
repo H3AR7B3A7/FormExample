@@ -1,4 +1,4 @@
-import { Patient } from '@app/patient-form/models/patient'
+import { Patient } from '@app/patient-form/model/patient'
 import { createAction, props } from '@ngrx/store'
 
 // LOAD OPERATIONS

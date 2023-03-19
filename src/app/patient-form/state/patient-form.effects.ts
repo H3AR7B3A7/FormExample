@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core'
-import { PatientService } from '@app/patient-form/patient.service'
+import { PatientService } from '@app/patient-form/service/patient.service'
 import {
   PatientFormApiActions,
   PatientFormPageActions,

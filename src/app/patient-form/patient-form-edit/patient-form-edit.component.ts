@@ -6,12 +6,12 @@ import {
   Output,
 } from '@angular/core'
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
-import { GENDERS } from '@app/patient-form/models/gender'
+import { GENDERS } from '@app/patient-form/model/gender'
 import {
   NEW_PATIENT,
   Patient,
   resolvePatient,
-} from '@app/patient-form/models/patient'
+} from '@app/patient-form/model/patient'
 import { PatientIdValidator } from '@app/patient-form/patient-form-edit/utils/patient-id-validator'
 import { Utils } from '@app/patient-form/patient-form-edit/utils/utils'
 

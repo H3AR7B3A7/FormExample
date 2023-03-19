@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
-import { Patient } from '@app/patient-form/models/patient'
+import { Patient } from '@app/patient-form/model/patient'
 import {
   addPatient,
   loadPatients,
@@ -12,11 +12,11 @@ import { Store } from '@ngrx/store'
 import { Observable } from 'rxjs'
 
 @Component({
-  templateUrl: './patient-form.component.html',
-  styleUrls: ['./patient-form.component.scss'],
+  templateUrl: './patient-form-shell.component.html',
+  styleUrls: ['./patient-form-shell.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PatientFormComponent implements OnInit {
+export class PatientFormShellComponent implements OnInit {
   vm$!: Observable<{
     patients: Patient[]
     currentPatientId: number
