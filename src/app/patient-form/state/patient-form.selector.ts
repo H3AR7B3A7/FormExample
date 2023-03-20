@@ -4,11 +4,12 @@ import { createFeatureSelector, createSelector } from '@ngrx/store'
 
 const selectPatientFormFeatureState =
   createFeatureSelector<PatientFormState>('patientForm')
-export const selectPatients = createSelector(
-  selectPatientFormFeatureState,
-  (state) => state.patients
-)
 
+// export const selectPatients = createSelector(
+//   selectPatientFormFeatureState,
+//   (state) => state.patients
+// )
+//
 // export const selectPatientsErrorMessage = createSelector(
 //   selectPatientFormFeatureState,
 //   (state) => state.errorMessage
