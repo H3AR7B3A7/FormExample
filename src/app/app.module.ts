@@ -8,7 +8,8 @@ import { rootReducer } from '@app/state/root.reducer'
 import { EffectsModule } from '@ngrx/effects'
 import { StoreModule } from '@ngrx/store'
 import { StoreDevtoolsModule } from '@ngrx/store-devtools'
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api'
+
 import { HomeComponent } from './home/home.component'
 
 @NgModule({
