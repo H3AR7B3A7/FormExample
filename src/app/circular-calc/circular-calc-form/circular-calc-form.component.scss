@@ -1,0 +1,24 @@
+@import 'src/assets/style/variables';
+@import 'src/assets/style/colors';
+
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+form {
+  display: flex;
+  align-items: center;
+  border: $border;
+  margin: $medium-spacing;
+  padding: $small-spacing;
+  border-radius: $border-radius;
+  background-color: $secondary;
+
+  & input {
+    width: 3rem;
+    margin: 0 4px;
+  }
+}
