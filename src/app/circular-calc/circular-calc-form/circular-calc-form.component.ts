@@ -25,11 +25,11 @@ export class CircularCalcFormComponent {
 
   calculateC(): void {
     const c = (this.fc.a.value || 0) + (this.fc.b.value || 0)
-    this.calcForm.patchValue({ c: c })
+    this.calcForm.patchValue({ c })
   }
 
   calculateB(): void {
     const b = (this.fc.c.value || 0) - (this.fc.a.value || 0)
-    this.calcForm.patchValue({ b: b })
+    this.calcForm.patchValue({ b })
   }
 }
