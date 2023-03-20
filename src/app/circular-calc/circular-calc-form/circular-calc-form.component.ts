@@ -10,9 +10,9 @@ import { Utils } from '@app/patient-form/patient-form-edit/utils/utils'
 })
 export class CircularCalcFormComponent {
   readonly calcForm = this.fb.group({
-    a: [NaN], // Or 'null as unknown as number'
-    b: [NaN], // when we want calculation to start
-    c: [NaN], // with empty inputs...
+    a: [NaN],
+    b: [NaN],
+    c: [NaN],
   })
 
   readonly fc = Utils.getControls(this.calcForm)
@@ -24,12 +24,12 @@ export class CircularCalcFormComponent {
   }
 
   calculateC(): void {
-    const c = this.fc.a.value + this.fc.b.value
+    const c = (this.fc.a.value || 0) + (this.fc.b.value || 0)
     this.calcForm.patchValue({ c: c })
   }
 
   calculateB(): void {
-    const b = this.fc.c.value - this.fc.a.value
+    const b = (this.fc.c.value || 0) - (this.fc.a.value || 0)
     this.calcForm.patchValue({ b: b })
   }
 }
