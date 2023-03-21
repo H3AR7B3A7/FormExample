@@ -86,7 +86,7 @@ export class PatientFormEditComponent implements OnChanges {
   }
 
   removeNote(i: number): void {
-    this.patientForm.controls.notes.removeAt(i)
+    this.fc.notes.removeAt(i)
   }
 
   private buildNote(): FormGroup<{ text: FormControl<string | null> }> {
