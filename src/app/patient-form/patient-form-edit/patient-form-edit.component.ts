@@ -67,7 +67,7 @@ export class PatientFormEditComponent implements OnChanges {
       this.patientForm.controls.notes.clear()
     }
     if (!sc.savingPatient?.firstChange) {
-      this.displayPatient(sc.currentPatient.currentValue)
+      this.displayPatient(sc.currentPatient?.currentValue)
     }
   }
 
@@ -108,8 +108,9 @@ export class PatientFormEditComponent implements OnChanges {
 
   private displayPatient(patient: Patient): void {
     this.patientForm.controls.notes.clear()
-    if (patient.id === 0) {
+    if (!patient) {
       this.patientForm.reset(NEW_PATIENT)
+      this.addNote()
       this.formTitle = 'Add Patient'
       this.buttonText = 'Add'
       this.fc.patientId.enable()
