@@ -12,8 +12,8 @@ import {
   Patient,
   resolvePatient,
 } from '@app/patient-form/model/patient'
+import { FormGroupUtils } from '@app/patient-form/patient-form-edit/utils/formGroupUtils'
 import { PatientIdValidator } from '@app/patient-form/patient-form-edit/utils/patient-id-validator'
-import { Utils } from '@app/patient-form/patient-form-edit/utils/utils'
 
 @Component({
   selector: 'app-patient-form-edit',
@@ -42,7 +42,7 @@ export class PatientFormEditComponent {
     notes: this.fb.array([this.buildNote()]),
   })
 
-  readonly fc = Utils.getControls(this.patientForm)
+  readonly fc = FormGroupUtils.getFlattenedControls(this.patientForm)
 
   formTitle = 'Add Patient'
   buttonText = 'Add'

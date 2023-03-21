@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core'
 import { NonNullableFormBuilder } from '@angular/forms'
-import { Utils } from '@app/patient-form/patient-form-edit/utils/utils'
+import { FormGroupUtils } from '@app/patient-form/patient-form-edit/utils/formGroupUtils'
 
 @Component({
   selector: 'app-circular-calc-form',
@@ -15,7 +15,7 @@ export class CircularCalcFormComponent {
     c: [NaN],
   })
 
-  readonly fc = Utils.getControls(this.calcForm)
+  readonly fc = FormGroupUtils.getFlattenedControls(this.calcForm)
 
   constructor(private fb: NonNullableFormBuilder) {}
 
