@@ -1,8 +1,4 @@
 import { Injectable } from '@angular/core'
-import { Actions } from '@ngrx/effects'
-import { createAction } from '@ngrx/store'
-
-export const getClientsSuccess = createAction('[Client] Get Clients Success')
 
 @Injectable()
 export class RootEffects {
@@ -12,6 +8,5 @@ export class RootEffects {
   //     switchMap(() => of(/*...*/))
   //   )
   // )
-
-  public constructor(private actions$: Actions) {}
+  // public constructor(private actions$: Actions) {}
 }
