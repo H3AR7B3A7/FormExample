@@ -108,7 +108,7 @@ export class PatientFormEditComponent implements OnChanges {
 
   private displayPatient(patient: Patient): void {
     this.patientForm.controls.notes.clear()
-    if (!patient) {
+    if (!patient || patient.id === 0) {
       this.patientForm.reset(NEW_PATIENT)
       this.addNote()
       this.formTitle = 'Add Patient'
