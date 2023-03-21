@@ -3,6 +3,7 @@ import {
   Component,
   EventEmitter,
   Input,
+  OnChanges,
   Output,
 } from '@angular/core'
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
@@ -14,6 +15,7 @@ import {
 } from '@app/patient-form/model/patient'
 import { PatientIdValidator } from '@app/patient-form/patient-form-edit/utils/patient-id-validator'
 import { FormGroupUtils } from '@app/shared/util/form-group-utils'
+import { TypedSimpleChanges } from '@app/shared/util/typed-simple-changes'
 
 @Component({
   selector: 'app-patient-form-edit',
@@ -21,7 +23,14 @@ import { FormGroupUtils } from '@app/shared/util/form-group-utils'
   styleUrls: ['./patient-form-edit.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PatientFormEditComponent {
+export class PatientFormEditComponent implements OnChanges {
+  @Input()
+  savingPatient!: boolean
+  @Input()
+  currentPatient!: Patient
+  @Output()
+  private readonly patient = new EventEmitter<Patient>()
+
   readonly patientForm = this.fb.group({
     patientId: [
       '',
@@ -43,43 +52,24 @@ export class PatientFormEditComponent {
   })
 
   readonly fc = FormGroupUtils.getFlattenedControls(this.patientForm)
-
+  readonly genders = GENDERS
   formTitle = 'Add Patient'
   buttonText = 'Add'
-  readonly genders = GENDERS
-  private _savingPatient!: boolean
-  private _currentPatient!: Patient
-
-  @Input()
-  set savingPatient(saving: boolean) {
-    if (!saving) {
-      this.patientForm.reset(NEW_PATIENT)
-      this.patientForm.controls.notes.clear()
-    }
-    this._savingPatient = saving
-  }
-
-  get savingPatient(): boolean {
-    return this._savingPatient
-  }
-
-  @Input()
-  set currentPatient(patient: Patient) {
-    this.displayPatient(patient)
-    this._currentPatient = patient
-  }
-
-  get currentPatient(): Patient {
-    return this._currentPatient
-  }
-
-  @Output()
-  private readonly patient = new EventEmitter<Patient>()
 
   constructor(
     private fb: FormBuilder,
     private patientIdValidator: PatientIdValidator
   ) {}
+
+  ngOnChanges(sc: TypedSimpleChanges<PatientFormEditComponent>): void {
+    if (!sc.savingPatient?.currentValue && !sc.savingPatient?.firstChange) {
+      this.patientForm.reset(NEW_PATIENT)
+      this.patientForm.controls.notes.clear()
+    }
+    if (!sc.savingPatient?.firstChange) {
+      this.displayPatient(sc.currentPatient.currentValue)
+    }
+  }
 
   noteAt(i: number): FormControl {
     return this.patientForm.controls.notes.controls[i].controls.text
