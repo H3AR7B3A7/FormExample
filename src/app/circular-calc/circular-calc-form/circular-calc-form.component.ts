@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core'
 import { NonNullableFormBuilder } from '@angular/forms'
-import { FormGroupUtils } from '@app/patient-form/patient-form-edit/utils/formGroupUtils'
+import { FormGroupUtils } from '@app/shared/util/form-group-utils'
 
 @Component({
   selector: 'app-circular-calc-form',

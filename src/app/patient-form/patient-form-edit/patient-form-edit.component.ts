@@ -12,8 +12,8 @@ import {
   Patient,
   resolvePatient,
 } from '@app/patient-form/model/patient'
-import { FormGroupUtils } from '@app/patient-form/patient-form-edit/utils/formGroupUtils'
 import { PatientIdValidator } from '@app/patient-form/patient-form-edit/utils/patient-id-validator'
+import { FormGroupUtils } from '@app/shared/util/form-group-utils'
 
 @Component({
   selector: 'app-patient-form-edit',
