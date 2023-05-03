@@ -1,5 +1,5 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http'
-import { Injectable } from '@angular/core'
+import { Injectable, inject } from '@angular/core'
 import { Patient } from '@app/patient-form/model/patient'
 import { Observable, catchError, map, retry, throwError } from 'rxjs'
 
@@ -8,8 +8,7 @@ import { Observable, catchError, map, retry, throwError } from 'rxjs'
 })
 export class PatientService {
   private readonly patientBaseUrl = 'api/patients/'
-
-  constructor(private http: HttpClient) {}
+  private readonly http = inject(HttpClient)
 
   getPatients(): Observable<Patient[]> {
     return this.http.get<Patient[]>(this.patientBaseUrl).pipe(

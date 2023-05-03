@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core'
 import { Patient } from '@app/patient-form/model/patient'
 import {
   addPatient,
@@ -33,7 +33,7 @@ export class PatientFormShellComponent implements OnInit {
   // patientAdded$!: Observable<boolean>
   // ...
 
-  constructor(private store: Store) {}
+  private readonly store = inject(Store)
 
   ngOnInit(): void {
     this.vm$ = this.store.select(selectPatientFormVM)

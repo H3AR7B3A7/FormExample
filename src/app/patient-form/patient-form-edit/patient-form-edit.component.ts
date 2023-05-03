@@ -5,6 +5,7 @@ import {
   Input,
   OnChanges,
   Output,
+  inject,
 } from '@angular/core'
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { GENDERS } from '@app/patient-form/model/gender'
@@ -28,10 +29,16 @@ export class PatientFormEditComponent implements OnChanges {
   savingPatient!: boolean
   @Input()
   currentPatient!: Patient
+  formTitle = 'Add Patient'
+  buttonText = 'Add'
+  readonly genders = GENDERS
+
   @Output()
   private readonly patient = new EventEmitter<Patient>()
+  private fb = inject(FormBuilder)
+  private patientIdValidator = inject(PatientIdValidator)
 
-  readonly patientForm = this.fb.group({
+  readonly patientForm = this.fb.nonNullable.group({
     patientId: [
       '',
       Validators.required,
@@ -50,16 +57,7 @@ export class PatientFormEditComponent implements OnChanges {
     }),
     notes: this.fb.array([this.buildNote()]),
   })
-
   readonly fc = FormGroupUtils.getFlattenedControls(this.patientForm)
-  readonly genders = GENDERS
-  formTitle = 'Add Patient'
-  buttonText = 'Add'
-
-  constructor(
-    private fb: FormBuilder,
-    private patientIdValidator: PatientIdValidator
-  ) {}
 
   ngOnChanges(sc: TypedSimpleChanges<PatientFormEditComponent>): void {
     if (!sc.savingPatient?.currentValue && !sc.savingPatient?.firstChange) {
